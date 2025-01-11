@@ -11,8 +11,8 @@ const ContactUs = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    const userName = form.current.user_name.value;
-    const userEmail = form.current.user_email.value;
+    const userName = form.current.to_name.value;
+    const userEmail = form.current.from_name.value;
     const userMessage = form.current.message.value;
     const regex = /^[\w-]+(.[\w-]+)*@([\w-]+.)+[a-zA-Z]{2,7}$/;
 
