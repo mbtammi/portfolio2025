@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.e1046b9c.css",
+    "main.js": "/static/js/main.6cd04400.js",
+    "static/media/kaasalainen.png": "/static/media/kaasalainen.ac1622bb55e757531558.png",
+    "static/media/tinkerit.png": "/static/media/tinkerit.262bb6b23f73ba237c00.png",
+    "static/media/Miro2.webp": "/static/media/Miro2.cbdd64a1afa6c2fd3a8b.webp",
+    "static/media/kyssari.png": "/static/media/kyssari.3c552493572fdd03f0e4.png",
+    "static/media/niko.png": "/static/media/niko.32a50278d8128c4291d6.png",
+    "static/media/Once-2.png": "/static/media/Once-2.b626501fe04c047df551.png",
+    "static/media/hyvy.png": "/static/media/hyvy.4f2968809b73261af49e.png",
+    "static/media/saa.png": "/static/media/saa.96aa661813b42785bff1.png",
+    "static/media/movit.png": "/static/media/movit.7e1758171c4db5cb4466.png",
+    "index.html": "/index.html",
+    "main.e1046b9c.css.map": "/static/css/main.e1046b9c.css.map",
+    "main.6cd04400.js.map": "/static/js/main.6cd04400.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.e1046b9c.css",
+    "static/js/main.6cd04400.js"
+  ]
+}
