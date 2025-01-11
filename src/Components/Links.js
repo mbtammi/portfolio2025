@@ -66,13 +66,13 @@ const Links = () => {
             initial="hidden"
             animate="visible"
           >
-            <div className="link-content">
-              <span className="link-name">{link.name}</span>
-              <span className="link-description">{link.description}</span>
-              <a href={link.href} target="_blank" rel="noopener noreferrer">
-                {link.icon}
-              </a>
-            </div>
+            <a href={link.href} target="_blank" rel="noopener noreferrer">
+              <div className="link-content">
+                <span className="link-name">{link.name}</span>
+                <span className="link-description">{link.description}</span>
+                <div className="link-icon">{link.icon}</div>
+              </div>
+            </a>
           </motion.li>
         ))}
       </ul>

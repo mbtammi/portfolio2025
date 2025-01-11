@@ -77,7 +77,7 @@ const Navigation = () => {
           <FaYoutube className="link-icon-nav" />
         </a>
         <a
-          href="https://www.linkedin.com/in/yourlinkedin"
+          href="https://www.linkedin.com/in/miro-tammi-701bb3205/"
           target="_blank"
           rel="noopener noreferrer"
         >

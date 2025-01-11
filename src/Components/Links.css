@@ -1,165 +1,171 @@
 
-  .link-content a {
-    color: white;
-    font-size: 1.2em;
-  }
-  
-  /* Links container styling */
-.links-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  background-color: rgb(18, 18, 18); /* Updated background color */
+.link-content a {
   color: white;
-  padding: 20px;
-  animation: fadeIn 0.8s ease-in-out; /* Fade-in animation */
+  font-size: 1.2em;
+}
+
+/* Links container styling */
+.links-container {
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
+height: 100vh;
+background-color: rgb(18, 18, 18); /* Updated background color */
+color: white;
+padding: 20px;
+animation: fadeIn 0.8s ease-in-out; /* Fade-in animation */
 }
 
 /* Fade-in animation for the entire page */
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
 }
 
 /* Title of the LinkTree */
 .links-title {
-  font-size: 2em;
-  margin-bottom: 20px;
-  text-align: center;
-  opacity: 0;
-  animation: fadeInTitle 1s ease-in-out 0.3s forwards;
+font-size: 2em;
+margin-bottom: 20px;
+text-align: center;
+opacity: 0;
+animation: fadeInTitle 1s ease-in-out 0.3s forwards;
 }
 
 /* Fade-in animation for title */
 @keyframes fadeInTitle {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
+from {
+  opacity: 0;
+}
+to {
+  opacity: 1;
+}
+}
+
+.links-list a {
+  text-decoration: none;
+  width: 100%;
+  color: white;
 }
 
 /* List of links */
 .links-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  max-width: 500px; /* Set a maximum width for the links */
-  display: flex;
-  flex-direction: column; /* Stack links vertically */
-  align-items: center; /* Center the list itself */
+list-style: none;
+padding: 0;
+margin: 0;
+width: 100%;
+max-width: 500px; /* Set a maximum width for the links */
+display: flex;
+flex-direction: column; /* Stack links vertically */
+align-items: center; /* Center the list itself */
 }
 
 /* Each link item */
 .link-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin: 15px 0;
-  padding: 10px;
-  background-color: #1c1c1c; /* Slightly lighter background for each item */
-  border-radius: 8px;
-  width: 100%; /* Ensure the item takes full width */
-  opacity: 0;
-  transform: translateY(20px);
-  animation: slideIn 0.6s ease-out forwards;
-  animation-delay: calc(var(--link-index) * 0.2s); /* Stagger animation for each link */
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin: 15px 0;
+padding: 10px;
+background-color: #1c1c1c; /* Slightly lighter background for each item */
+border-radius: 8px;
+width: 100%; /* Ensure the item takes full width */
+opacity: 0;
+transform: translateY(20px);
+animation: slideIn 0.6s ease-out forwards;
+animation-delay: calc(var(--link-index) * 0.2s); /* Stagger animation for each link */
 }
 
 /* Slide-in animation for link items */
 @keyframes slideIn {
-  from {
-    opacity: 0;
-    transform: translateY(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+from {
+  opacity: 0;
+  transform: translateY(20px);
+}
+to {
+  opacity: 1;
+  transform: translateY(0);
+}
 }
 
 /* Styling the link content */
 .link-content {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-  transition: transform 0.3s ease, background-color 0.3s ease;
-  margin-inline: 2%;
+display: flex;
+justify-content: space-between;
+align-items: center;
+width: 100%;
+transition: transform 0.3s ease, background-color 0.3s ease;
+margin-inline: 2%;
 }
 
 /* Hover effect for link items */
 .link-item:hover .link-content {
-  transform: scale(1.05);
+transform: scale(1.05);
 }
 
 /* Styling the name on the left */
 .link-name {
-  font-size: 1.2em;
-  font-weight: bold;
-  flex: 1;
-  text-align: left;
+font-size: 1.2em;
+font-weight: bold;
+flex: 1;
+text-align: left;
 }
 
 /* Center the description text */
 .link-description {
-  font-size: 1em;
-  color: rgba(255, 255, 255, 0.7); /* Lighter text color */
-  text-align: center;
-  flex: 2;
-  display: flex;
-  justify-content: center;
+font-size: 1em;
+color: rgba(255, 255, 255, 0.7); /* Lighter text color */
+text-align: center;
+flex: 2;
+display: flex;
+justify-content: center;
 }
 
 /* Icons on the right */
 .link-icon-nav {
-  font-size: 1.5em;
-  color: white;
+font-size: 1.5em;
+color: white;
 }
 
 /* Styling for logos */
 .links-link-icon {
-  color: white;
-  font-size: 1.5em;
-  transition: color 0.3s ease;
+color: white;
+font-size: 1.5em;
+transition: color 0.3s ease;
 }
 
 .link-item:hover .links-link-icon {
-  color: #0073e6; /* Add a subtle color change for hover */
+color: #0073e6; /* Add a subtle color change for hover */
 }
 
 /* Media query for smaller screens */
 @media (max-width: 800px) {
-  .links-container {
-    padding: 15px;
-    justify-content: flex-start;
-  }
+.links-container {
+  padding: 15px;
+  justify-content: flex-start;
+}
 
-  .links-title {
-    font-size: 1.8em;
-  }
+.links-title {
+  font-size: 1.8em;
+}
 
-  .link-name {
-    font-size: 1em;
-  }
+.link-name {
+  font-size: 1em;
+}
 
-  .link-description {
-    font-size: 0.9em;
-  }
+.link-description {
+  font-size: 0.9em;
+}
 
-  .link-icon {
-    font-size: 1.2em;
-  }
+.link-icon {
+  font-size: 1.2em;
+}
 
-  .link-item {
-    width: 85%;
-  }
+.link-item {
+  width: 85%;
+}
 }
