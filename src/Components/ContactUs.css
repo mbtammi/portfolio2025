@@ -1,0 +1,110 @@
+/* ContactUs.css */
+
+/* Global styles for font and background */
+body {
+    font-family: 'Space Mono', monospace;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  /* Basic container for the contact form */
+  .contact-container {
+    max-width: 600px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: rgb(18, 18, 18);
+    color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+  
+  .contact-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: white;
+    font-family: 'Archivo Black', sans-serif;
+  }
+  
+  /* Form styling */
+  .form-section {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-section label {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #ccc; /* Slightly lighter for label color */
+    font-family: 'Archivo Black', sans-serif;
+  }
+  
+  .form-section input, .form-section textarea {
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #555;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #ddd;
+    background-color: #222; /* Dark background for input fields */
+  }
+  
+  /* Input field focus */
+  .form-section input:focus, .form-section textarea:focus {
+    outline: none;
+    border-color: #FFD60A;
+  }
+  
+  /* Button styling */
+  input[type="submit"] {
+    background-color: #FFD60A;
+    color: #222;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 16px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  input[type="submit"]:hover {
+    background-color: #c9a435; /* Button hover color */
+  }
+  
+  /* Message notifications */
+  .error-message, .success-message {
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 4px;
+    font-size: 14px;
+    text-align: center;
+    background-color: #222;
+  }
+  
+  .error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+  }
+  
+  .success-message {
+    background-color: #d4edda;
+    color: #155724;
+    border: 1px solid #c3e6cb;
+  }
+  
+  /* Media Query for responsive design */
+  @media (max-width: 800px) {
+    .contact-container {
+      padding: 10px;
+    }
+  
+    .form-section input, .form-section textarea {
+      font-size: 16px;
+    }
+  
+    input[type="submit"] {
+      font-size: 18px;
+    }
+  }
+  

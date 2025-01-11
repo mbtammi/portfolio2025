@@ -1,0 +1,147 @@
+.projects-container {
+  padding: 2em 5%; /* Adjust side padding */
+  background-color: rgb(18, 18, 18); /* Dark background */
+  color: #f5f5f5;
+  width: 60%; /* Set the container to take up 60% of the width */
+  margin: 0 auto; /* Center the container */
+}
+
+.projects-title {
+  text-align: center;
+  font-size: 2em;
+  margin-bottom: 2em;
+  color: #fff;
+}
+
+.projects-list {
+  display: flex;
+  flex-wrap: wrap; /* Allows wrapping to next row */
+  justify-content: center;
+  gap: 1.5em; /* Adds smaller spacing between cards */
+}
+
+.project-card {
+  width: 40%; /* Cards take up 40% of the container width */
+  aspect-ratio: 2 / 1; /* 2x1 aspect ratio: more wide than tall */
+  background-color: #2c2c2c; /* Dark gray for the card */
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow */
+  overflow: hidden;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  padding: 1em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
+}
+
+.project-image {
+  position: absolute;
+  top: 5%;
+  right: 5%;
+  width: 50%; /* Covers full card width */
+  height: 90%;
+  object-fit: cover; /* Ensures proper scaling */
+  opacity: 0.2; /* Subtle visibility */
+  z-index: 0;
+  border-radius: 10%;
+}
+
+.project-content {
+  position: relative;
+  z-index: 1; /* Places text above the image */
+  color: #fff;
+}
+
+.project-title {
+  font-size: 1.1em;
+  margin-bottom: 0.5em;
+  color: #ffd60a; /* Softer yellow for contrast */
+  font-weight: bold;
+}
+
+.project-description {
+  font-size: 0.9em;
+  color: #ddd;
+}
+
+.project-link {
+  display: inline-block;
+  margin-top: 0.5em;
+  color: #1db954;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.project-link:hover {
+  color: #17a34a;
+}
+
+/* Technology section */
+.project-stack {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Add shadow around the box */
+  padding: 2em; /* Add padding inside the box */
+  border-radius: 10px; /* Round the corners of the box */
+  margin-top: 2em;
+  text-align: center;
+  background-color: #2c2c2c; /* Dark background for the stack section */
+}
+
+.project-stack h4 {
+  font-size: 1.5em;
+  margin-bottom: 0.5em;
+  color: #ffd60a; /* Softer yellow for contrast */
+}
+
+.project-stack ul {
+  list-style-type: none;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center; /* Align technologies centrally */
+}
+
+.project-stack ul li {
+  font-size: 1.1em;
+  color: #ffffff;
+  margin-right: 1em; /* Add space between technologies */
+  margin-bottom: 0.5em; /* Add space to the bottom for wrapping */
+}
+
+.project-title-text {
+  text-align: center;
+  margin-block: 3%;
+}
+
+/* Mobile responsiveness */
+@media (max-width: 800px) {
+  .project-card {
+    width: 90%; /* Card takes up 90% of the width on mobile */
+    margin: 0 auto; /* Center the card */
+    aspect-ratio: 1 / 1;
+  }
+
+  .project-image {
+    height: 50%;
+  }
+
+  .projects-container {
+    padding: 2em 5%; /* Adjust side padding for smaller devices */
+    width: 80%;
+  }
+
+  .project-stack ul {
+    flex-direction: column; /* Stack technologies vertically on mobile */
+    align-items: center;
+  }
+
+  .projects-list {
+    justify-content: center; /* Center the cards on mobile */
+  }
+}

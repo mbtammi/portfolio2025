@@ -1,0 +1,96 @@
+.navigation {
+  background-color: #0b0b0b;
+  padding: 1em 0;
+  display: flex;
+  justify-content: space-between; /* Ensure space between left, center, and right */
+  align-items: center;
+  padding: 0 20px;
+}
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 2em;
+  font-size: larger;
+  flex: 1;
+  justify-content: center; /* Center the navigation items */
+  position: relative; /* Required for positioning the underline */
+}
+
+.nav-item {
+  text-decoration: none;
+  color: rgb(150, 150, 150);
+  font-size: 0.9em;
+  position: relative; /* Required for the underline */
+  transition: color 0.3s ease; /* Smooth transition for text color */
+}
+
+.nav-item:hover {
+  color: #FFD60A; /* Spotify green for a modern touch */
+}
+
+/* Add active underline animation */
+.nav-item::after {
+  content: '';
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #FFD60A; /* Yellow underline */
+  transition: width 0.3s ease; /* Smooth transition for width */
+}
+
+.nav-item.active::after {
+  width: 100%; /* Full width for active link */
+}
+
+/* Style for social media links (Instagram, YouTube, LinkedIn) */
+.navigation-social-links {
+  display: flex;
+  gap: 15px; /* Spacing between icons */
+}
+
+.navigation-social-links a {
+  color: white; /* Set the link color to white */
+  text-decoration: none; /* Remove underline */
+}
+
+.link-icon-nav {
+  color: white; /* Set the icon color to white */
+  font-size: 1.5em; /* Icon size */
+}
+
+.name {
+  color: white;
+}
+
+.nav-item.active {
+  color: #FFD60A; /* Change color of active link */
+}
+
+/* Mobile responsiveness: adjust layout for screens smaller than 800px */
+@media (max-width: 800px) {
+  .navigation {
+    padding: 1em; /* Adjust padding */
+  }
+
+  .nav-links {
+    font-size: 0.8em; /* Smaller font size for navigation items */
+    /* flex: 0; */
+    padding-left: 0;
+  }
+
+  /* Hide the 'MIRO' name and social links on smaller screens */
+  .name {
+    display: none;
+  }
+
+  .navigation-social-links {
+    display: none;
+  }
+
+  .brand-section p {
+    padding-inline: 5% !important;
+  }
+}

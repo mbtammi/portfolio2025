@@ -1,0 +1,250 @@
+body {
+  font-family: 'Space Mono', monospace; /* Applied to general body text */
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Archivo Black', sans-serif; /* Applied to all headings */
+}
+
+/* Main Container */
+.youtube-container {
+  padding: 20px;
+  font-family: 'Space Mono', monospace; /* Redundant but for clarity */
+  background-color: rgb(18, 18, 18);
+  color: white; /* Default text color */
+}
+
+/* Big Header Section */
+.header-section {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.channel-name {
+  font-size: 3em;
+  color: white; /* White text */
+  font-family: 'Archivo Black', sans-serif; /* Ensures font consistency */
+}
+
+.channel-description {
+  font-size: 1.2em;
+  color: #ccc; /* Slightly lighter for description */
+  font-family: 'Space Mono', monospace; /* Body font */
+  padding-inline: 20%;
+}
+
+/* Video Section */
+.video-list {
+  display: flex;
+  gap: 20px;
+  overflow-x: auto;
+  justify-content: center;
+  padding: 20px 0;
+  background-color: rgb(18, 18, 18);
+}
+
+.video-card {
+  flex-shrink: 0;
+  width: 300px;
+  transform: rotate(0deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.05) rotate(3deg); /* Slight scaling and rotation */
+  /* box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3); */
+}
+
+.tilt-left {
+  transform: rotate(-5deg);
+  transition-delay: 2s; /* Delay the tilt effect */
+}
+
+.tilt-right {
+  transform: rotate(5deg);
+  transition-delay: 2s; /* Delay the tilt effect */
+}
+.video-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+.video-card {
+  position: relative;
+  width: 300px;
+  height: 169px; /* Ensures the container maintains the correct ratio */
+  transform: rotate(0deg);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.video-thumbnail-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.video-thumbnail {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures the image fills the container without distortion */
+  border-radius: 5%;
+}
+
+/* Brand Section */
+.brand-section {
+  margin-top: 60px;
+  text-align: center;
+}
+
+.brand-section h2 {
+  font-size: 2.5em;
+  color: white; /* White text */
+  font-family: 'Archivo Black', sans-serif; /* Heading font */
+}
+
+.brand-section p {
+  font-size: 1.2em;
+  color: #ccc; /* Slightly lighter for description */
+  margin: 20px 0;
+  font-family: 'Space Mono', monospace; /* Body font */
+  padding-inline: 20%;
+  padding-bottom: 5%;
+}
+
+/* Pricing Boxes */
+.pricing-boxes {
+  display: flex;
+  gap: 5%;
+  justify-content: center;
+  margin-top: 20px;
+  padding-bottom: 5%;
+}
+
+.pricing-box:hover {
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+}
+
+.pricing-box {
+  border: 1px solid #555;
+  padding: 20px;
+  width: 18%;
+  border-radius: 10px;
+  background-color: #222; /* Dark background for contrast */
+}
+
+.pricing-box h3 {
+  font-size: 1.5em;
+  /* color: #FFD60A;  */
+  font-family: 'Archivo Black', sans-serif; /* Heading font */
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+}
+
+.pricing-box h3 svg {
+  font-size: 1.1em; /* Adjust the icon size */
+  color: #FFD60A; /* Updated icon color */
+}
+
+.pricing-box p {
+  margin-top: 10px;
+  font-size: 1em;
+  color: #ccc; /* Slightly lighter for description */
+  font-family: 'Space Mono', monospace; /* Body font */
+}
+
+.pricing-box button {
+  padding: 15px 30px; /* Increased padding for a bigger button */
+  background-color: #FFD60A; /* Updated button background color */
+  color: #222;
+  border: none;
+  border-radius: 8px; /* Slightly rounded corners */
+  cursor: pointer;
+  font-family: 'Space Mono', monospace; /* Button font */
+  font-size: 1.1em; /* Increased font size for better readability */
+  transition: background-color 0.3s ease; /* Smooth background change */
+}
+
+.pricing-box button:hover {
+  background-color: #c9a435; /* Button hover color */
+}
+
+.price {
+  font-size: 1.2em;
+  color: #FFD60A; /* Updated price color */
+  margin-top: 10px;
+  font-weight: bold; /* Emphasizes the price */
+  padding-bottom: 0 !important;
+}
+
+.loading {
+  color: white;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  background-color: #0b0b0b;
+}
+
+.bold-yellow {
+  color: #FFD60A;
+  font-style: italic;
+}
+
+/* Media Query for screen sizes under 800px */
+@media (max-width: 800px) {
+  .pricing-boxes {
+    flex-direction: column; /* Stack the pricing boxes vertically */
+    align-items: center; /* Center the pricing boxes */
+  }
+
+  .pricing-box {
+    width: 80%; /* Make each box take up 80% of the container's width */
+    margin-bottom: 20px; /* Add spacing between boxes */
+  }
+
+  .channel-description {
+    padding-inline: 5% !important;
+  }
+}
+
+/* Smooth hover effects */
+.pricing-box:hover {
+  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+  transition: box-shadow 0.3s ease;
+}
+
+.video-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
+}
+
+.video-card:hover {
+  transform: scale(1.05) rotate(3deg);
+  opacity: 0.9;
+}
+
+/* Additional Framer Motion Enhancements */
+.youtube-container {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.video-list {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* Pricing Boxes - smooth hover */
+.pricing-box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.pricing-box:hover {
+  transform: scale(1.05);
+}

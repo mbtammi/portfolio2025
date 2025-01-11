@@ -1,0 +1,95 @@
+/* Container for the whole About page */
+.about-container {
+  color: #ffffff;
+  line-height: 1.6;
+  justify-content: center; /* Center horizontally */
+  align-items: center;    /* Center vertically */
+  flex-direction: column; /* Stack content vertically */
+  height: 100vh;
+  padding: 0;             /* Remove padding to avoid shifting */
+  text-align: left;       /* Align all text to the left */
+  max-width: 700px;
+  margin: 0 auto;
+  flex: 1;
+}
+
+.about-header {
+  text-align: left;      /* Left align the header text */
+  margin-bottom: 2em;
+  color: white;
+}
+
+.about-header h1 {
+  font-size: 2.5em;
+  margin-bottom: 0.5em;
+}
+
+.about-subtitle {
+  font-size: 1.2em;
+  color: #ffffff;
+}
+
+.about-bio,
+.about-skills {
+  margin-bottom: 3em;
+  font-size: 0.9em;
+}
+
+.about-bio h2,
+.about-skills h2 {
+  color: white;
+  padding: 2em 0;
+  text-align: left;
+}
+
+.about-bio p,
+.about-skills ul {
+  font-size: 1.1em;
+  color: #ffffff;
+}
+
+.about-skills ul {
+  list-style: none;
+  padding: 0;
+}
+
+.about-skills li {
+  margin: 0.5em 0;
+}
+
+.about-footer {
+  text-align: left;      /* Left align the footer text */
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 3em;
+}
+
+/* Styling for skill icons */
+.skill-icon {
+  margin-right: 0.8em;
+  color: #ffe57c; /* Soft gray for the icons */
+  font-size: 1.4em; /* Adjust the icon size */
+  transition: color 0.3s ease-in-out; /* Smooth color transition */
+}
+
+.skill-icon:hover {
+  color: #ffcc00; /* Highlight color on hover */
+}
+
+.skill-text p{
+  font-size: 1em;
+  color: #f3f3f3; /* Match the text color to the icons */
+  display: inline-block;
+}
+
+/* Optional: Style for strong text within skill descriptions */
+.skill-text strong {
+  color: #ffcc00; /* Highlight technology names */
+}
+
+@media (max-width: 680px) {
+  .about-container {
+    margin-inline: 5%;
+    font-size: 0.8em;
+  }
+}
