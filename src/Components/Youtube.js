@@ -24,12 +24,12 @@ const Youtube = () => {
             key: apiKey,
           },
         });
-
+    
         const videoIds = searchResponse.data.items
           .filter((item) => item.id.videoId)
           .map((item) => item.id.videoId)
           .join(',');
-
+    
         const videosResponse = await axios.get(`https://www.googleapis.com/youtube/v3/videos`, {
           params: {
             part: 'snippet,contentDetails',
@@ -37,13 +37,30 @@ const Youtube = () => {
             key: apiKey,
           },
         });
-
-        setVideos(videosResponse.data.items);
+    
+        // Filter videos to only include those over 1 minute long
+        const filteredVideos = videosResponse.data.items.filter((video) => {
+          const duration = video.contentDetails.duration; // ISO 8601 duration string (e.g., PT1M30S)
+          const durationInSeconds = parseDuration(duration); // Convert duration to seconds
+          return durationInSeconds > 60; // Only include videos longer than 1 minute
+        });
+    
+        setVideos(filteredVideos);
         setLoading(false);
       } catch (error) {
         console.error('Error fetching YouTube videos:', error);
         setLoading(false);
       }
+    };
+    
+    // Helper function to convert ISO 8601 duration to seconds
+    const parseDuration = (duration) => {
+      const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
+      const matches = regex.exec(duration);
+      const hours = parseInt(matches[1] || '0', 10);
+      const minutes = parseInt(matches[2] || '0', 10);
+      const seconds = parseInt(matches[3] || '0', 10);
+      return hours * 3600 + minutes * 60 + seconds;
     };
 
     fetchVideos();
@@ -94,7 +111,7 @@ const Youtube = () => {
             }}
           >
             <a
-              href={`https://www.youtube.com/watch?v=${video.id.videoId}`}
+              href={`https://www.youtube.com/watch?v=${video.id}`}
               target="_blank"
               rel="noopener noreferrer"
             >
