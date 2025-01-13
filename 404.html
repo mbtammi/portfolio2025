@@ -3,11 +3,13 @@
   <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=./index.html">
     <title>Redirecting...</title>
-    <script>
-      // This ensures we load index.html and the correct React Router path
-      window.location.replace(window.location.href.split("/").slice(0, -1).join("/") + "/index.html");
+    <script type="text/javascript">
+      // Wait for the DOM to load
+      window.onload = function() {
+        // Always load index.html regardless of the URL and leave the URL unchanged
+        window.location = window.location.pathname + '/index.html';
+      }
     </script>
   </head>
   <body>
