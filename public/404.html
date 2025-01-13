@@ -1,7 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
   <head>
-    <meta http-equiv="refresh" content="0; URL='/'" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Redirecting...</title>
+    <script type="text/javascript">
+      // Get the path from the URL
+      var currentPath = window.location.pathname;
+
+      // Redirect to the correct hash URL, only adding hash once
+      window.location.replace(window.location.origin + '#/' + currentPath.substring(1));
+    </script>
   </head>
-  <body></body>
+  <body>
+    <p>Redirecting...</p>
+  </body>
 </html>
