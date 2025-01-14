@@ -153,7 +153,7 @@ const Youtube = () => {
           <motion.div className="pricing-box" whileHover={{ scale: 1.05 }}>
             <h3><FaAudioDescription /> Integrated Ad</h3>
             <p>60-90 second ad inside my videos & Pinned comment</p>
-            <p className="price">$120-150</p>
+            <p className="price">$150-180</p>
             <button onClick={() => window.location.href = 'mailto:mirotammi44@gmail.com'}>
               Contact Me
             </button>
