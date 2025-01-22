@@ -70,7 +70,7 @@ const Links = () => {
               <div className="link-content">
                 <span className="link-name">{link.name}</span>
                 <span className="link-description">{link.description}</span>
-                <div className="link-icon">{link.icon}</div>
+                <div className="links-link-icon">{link.icon}</div>
               </div>
             </a>
           </motion.li>

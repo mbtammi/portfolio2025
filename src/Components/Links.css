@@ -78,6 +78,7 @@ opacity: 0;
 transform: translateY(20px);
 animation: slideIn 0.6s ease-out forwards;
 animation-delay: calc(var(--link-index) * 0.2s); /* Stagger animation for each link */
+padding-inline: 5%;
 }
 
 /* Slide-in animation for link items */
@@ -99,12 +100,11 @@ justify-content: space-between;
 align-items: center;
 width: 100%;
 transition: transform 0.3s ease, background-color 0.3s ease;
-margin-inline: 2%;
 }
 
 /* Hover effect for link items */
 .link-item:hover .link-content {
-transform: scale(1.05);
+transform: scale(1.03);
 }
 
 /* Styling the name on the left */
@@ -133,13 +133,10 @@ color: white;
 
 /* Styling for logos */
 .links-link-icon {
+display: flex;
 color: white;
 font-size: 1.5em;
 transition: color 0.3s ease;
-}
-
-.link-item:hover .links-link-icon {
-color: #0073e6; /* Add a subtle color change for hover */
 }
 
 /* Media query for smaller screens */

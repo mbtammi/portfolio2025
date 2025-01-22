@@ -21,7 +21,7 @@ const Home = () => {
           </div>
 
           <p className="home-subtitle">
-            I'm a software engineer, content creator, business owner, and a university student from Finland! I'm passionate about learning new things, constantly seeking opportunities to expand my knowledge and skills. I thrive in environments where I can take on new challenges, pushing myself to grow both personally and professionally.
+            I'm a 24-year-young software engineer, content creator, business owner, and a university student from Finland! I'm passionate about learning new things, constantly seeking opportunities to expand my knowledge and skills. I thrive in environments where I can take on new challenges, pushing myself to grow both personally and professionally.
           </p>
 
           {/* Links Section */}
