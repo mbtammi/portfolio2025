@@ -1,7 +1,7 @@
 import React from 'react';
 import './Navigation.css';
-import { NavLink } from 'react-router-dom'; // Import NavLink instead of Link
-import { FaInstagram, FaYoutube, FaLinkedinIn, FaEnvelope } from 'react-icons/fa'; // Import FaIcons, including FaEnvelope
+import { NavLink } from 'react-router-dom';
+import { FaInstagram, FaYoutube, FaLinkedinIn, FaEnvelope } from 'react-icons/fa';
 
 const Navigation = () => {
   return (
@@ -16,26 +16,15 @@ const Navigation = () => {
         <li>
           <NavLink
             to="/"
-            className="nav-item"
-            activeClassName="active" // Add active class for the active link
+            className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
           >
             Home
           </NavLink>
         </li>
-        {/* <li>
-          <NavLink
-            to="/about"
-            className="nav-item"
-            activeClassName="active" // Add active class for the active link
-          >
-            About
-          </NavLink>
-        </li> */}
         <li>
           <NavLink
             to="/projects"
-            className="nav-item"
-            activeClassName="active" // Add active class for the active link
+            className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
           >
             Projects
           </NavLink>
@@ -43,8 +32,7 @@ const Navigation = () => {
         <li>
           <NavLink
             to="/youtube"
-            className="nav-item"
-            activeClassName="active" // Add active class for the active link
+            className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
           >
             YouTube
           </NavLink>
@@ -52,10 +40,17 @@ const Navigation = () => {
         <li>
           <NavLink
             to="/links"
-            className="nav-item"
-            activeClassName="active" // Add active class for the active link
+            className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
           >
             Links
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
+            to="/codertype"
+            className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
+          >
+            CoderType
           </NavLink>
         </li>
       </ul>
@@ -84,7 +79,7 @@ const Navigation = () => {
           <FaLinkedinIn className="link-icon-nav" />
         </a>
         <a
-          href="mailto:mirotammi44@gmail.com" // Link to send email
+          href="mailto:mirotammi44@gmail.com"
           target="_blank"
           rel="noopener noreferrer"
         >

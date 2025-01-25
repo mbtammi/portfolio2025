@@ -101,7 +101,7 @@ const Youtube = () => {
       >
         {videos.slice(0, 4).map((video, index) => (
           <motion.div
-            key={video.id.videoId}
+            key={video.id}
             className={`video-card`}
             initial={{ opacity: 0, y: 20, rotate: 0 }}  // Initial state (not tilted)
             animate={{ opacity: 1, y: 0, rotate: index % 2 === 0 ? -5 : 5 }} // Tilt after animation starts
@@ -150,7 +150,7 @@ const Youtube = () => {
           transition={{ delay: 2.5, duration: 1 }}
         >
           {/* Pricing Boxes */}
-          <motion.div className="pricing-box" whileHover={{ scale: 1.05 }}>
+          <motion.div key="integrated-ad" className="pricing-box" whileHover={{ scale: 1.05 }}>
             <h3><FaAudioDescription /> Integrated Ad</h3>
             <p>60-90 second ad inside my videos & Pinned comment</p>
             <p className="price">$150-180</p>
@@ -158,7 +158,7 @@ const Youtube = () => {
               Contact Me
             </button>
           </motion.div>
-          <motion.div className="pricing-box" whileHover={{ scale: 1.05 }}>
+          <motion.div key="short-form" className="pricing-box" whileHover={{ scale: 1.05 }}>
             <h3><FaArrowUpRightDots /> Short-form Videos</h3>
             <p>15-30 second videos tailored to your brand.</p>
             <p className="price">$50-80</p>
@@ -166,7 +166,7 @@ const Youtube = () => {
               Contact Me
             </button>
           </motion.div>
-          <motion.div className="pricing-box" whileHover={{ scale: 1.05 }}>
+          <motion.div key="custom-sponsorship" className="pricing-box" whileHover={{ scale: 1.05 }}>
             <h3><FaVideo /> Custom Sponsorship</h3>
             <p>Tailored campaigns with creative flexibility.</p>
             <p className="price">???</p>

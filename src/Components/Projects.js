@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import { motion } from 'framer-motion';  // Import motion
+import { motion } from 'framer-motion';
 import './Projects.css';
 import hyvy from '../Images/hyvy.png'
 import kaasalainen from '../Images/kaasalainen.png'
@@ -9,7 +9,7 @@ import tinkerit from '../Images/tinkerit.png'
 import niko from '../Images/niko.png'
 import kyssari from '../Images/kyssari.png'
 import movit from '../Images/movit.png'
-import Modal from './Modal'; // Import the
+import Modal from './Modal';
 
 const projects = [
   {
@@ -79,68 +79,216 @@ const projects = [
 ];
 
 const Projects = () => {
-
-  const [selectedProject, setSelectedProject] = useState(null); // State to manage selected project
+  const [selectedProject, setSelectedProject] = useState(null);
+  const [technologies, setTechnologies] = useState([
+    ...new Set(projects.flatMap(project => project.stack))
+  ]);
 
   const openModal = (project) => {
-    setSelectedProject(project); // Set the selected project
+    setSelectedProject(project);
   };
 
   const closeModal = () => {
-    setSelectedProject(null); // Close the modal
+    setSelectedProject(null);
   };
 
-  // Get all technologies used across all projects and remove duplicates
-  const allTechnologies = [
-    ...new Set(projects.flatMap(project => project.stack)) // Flatten stack and remove duplicates using Set
-  ];
+  const shuffleTechnologies = () => {
+    setTechnologies(prevTech => {
+      const shuffled = [...prevTech];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    });
+  };
 
-    return (
-    <div className="projects-container">
-      <h2 className="projects-title">My Projects</h2>
-      <p className='project-title-text'>Click on the cards for more info.</p>
-      <div className="projects-list">
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2
+      }
+    }
+  };
+
+  const cardVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 50,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100,
+        damping: 12
+      }
+    },
+    hover: {
+      scale: 1.03,
+      y: -10,
+      transition: {
+        type: "spring",
+        stiffness: 400,
+        damping: 10
+      }
+    }
+  };
+
+  const techStackVariants = {
+    hidden: { 
+      opacity: 0,
+      y: 100
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.8,
+        ease: "easeOut"
+      }
+    }
+  };
+
+  const techItemVariants = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: { 
+      scale: 1,
+      opacity: 1,
+      transition: {
+        type: "spring",
+        stiffness: 100
+      }
+    },
+    hover: {
+      scale: 1.1,
+      rotate: [0, -5, 5, 0],
+      transition: {
+        duration: 0.3
+      }
+    }
+  };
+
+  return (
+    <motion.div 
+      className="projects-container"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.1 }}
+    >
+      <motion.h2 
+        className="projects-title"
+        initial={{ opacity: 0, y: -20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        My Projects
+      </motion.h2>
+      <motion.p 
+        className='project-title-text'
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ delay: 0.3 }}
+      >
+        Click on the cards for more info.
+      </motion.p>
+      <motion.div 
+        className="projects-list"
+        variants={containerVariants}
+      >
         {projects.map((project, index) => (
           <motion.div
             className="project-card"
             key={index}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
-            onClick={() => openModal(project)} // Open modal when clicking a project
+            variants={cardVariants}
+            whileHover="hover"
+            onClick={() => openModal(project)}
           >
             <div className="project-card-header">
-              <img src={project.image} alt={project.name} className="project-image" />
+              <motion.img 
+                src={project.image} 
+                alt={project.name} 
+                className="project-image"
+                whileHover={{ scale: 1.1, opacity: 0.3 }}
+                transition={{ duration: 0.3 }}
+              />
               <div className="project-title">
                 <h2>{project.name}</h2>
                 {project.codeLink && (
-                  <a href={project.codeLink} target="_blank" rel="noopener noreferrer" className="project-link">View Code</a>
+                  <motion.a 
+                    href={project.codeLink} 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    className="project-link"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                  >
+                    View Code
+                  </motion.a>
                 )}
               </div>
             </div>
             <p className="project-description">{project.description}</p>
           </motion.div>
         ))}
-      </div>
+      </motion.div>
 
-      {/* If a project is selected, show the modal */}
       {selectedProject && <Modal project={selectedProject} closeModal={closeModal} />}
       
-      {/* Stack section at the bottom */}
       <motion.div
         className="project-stack"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: projects.length * 0.1 }}
+        variants={techStackVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.1 }}
       >
-        <h4>Technology used in these projects:</h4>
-        <ul>
-          {allTechnologies.map((tech, idx) => (
-            <li key={idx}>{tech}</li>
+        <motion.h4
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          Technology used in these projects:
+        </motion.h4>
+        <motion.ul>
+          {technologies.map((tech, idx) => (
+            <motion.li 
+              key={tech}
+              className="tech-item"
+              variants={techItemVariants}
+              whileHover="hover"
+              custom={idx}
+              layout
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ 
+                opacity: 1, 
+                scale: 1,
+                transition: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 20,
+                  delay: idx * 0.25
+                }
+              }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{
+                layout: {
+                  type: "spring",
+                  stiffness: 300,
+                  damping: 25
+                }
+              }}
+            >
+              {tech}
+            </motion.li>
           ))}
-        </ul>
+        </motion.ul>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

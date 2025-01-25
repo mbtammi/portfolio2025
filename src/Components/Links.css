@@ -1,168 +1,178 @@
-
+/* Base link styling */
 .link-content a {
-  color: white;
-  font-size: 1.2em;
+  color: #ffffff;
+  font-size: 1.1em;  /* Slightly smaller font size */
+  text-decoration: none;
 }
 
-/* Links container styling */
+/* Main container */
 .links-container {
-display: flex;
-flex-direction: column;
-align-items: center;
-justify-content: center;
-height: 100vh;
-background-color: rgb(18, 18, 18); /* Updated background color */
-color: white;
-padding: 20px;
-animation: fadeIn 0.8s ease-in-out; /* Fade-in animation */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, rgb(18, 18, 18) 0%, rgb(25, 25, 25) 100%);
+  color: #ffffff;
+  padding: 40px 20px;
+  animation: fadeIn 0.8s ease-out;
+  perspective: 1000px; /* Add perspective for 3D effects */
 }
 
-/* Fade-in animation for the entire page */
+/* Smooth page fade in */
 @keyframes fadeIn {
-from {
-  opacity: 0;
-}
-to {
-  opacity: 1;
-}
+  from { opacity: 0; }
+  to { opacity: 1; }
 }
 
-/* Title of the LinkTree */
+/* Page title */
 .links-title {
-font-size: 2em;
-margin-bottom: 20px;
-text-align: center;
-opacity: 0;
-animation: fadeInTitle 1s ease-in-out 0.3s forwards;
+  font-size: 2.5em;
+  margin-bottom: 30px;
+  text-align: center;
+  font-weight: 600;
+  background: linear-gradient(45deg, #ffffff, #e0e0e0);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  opacity: 0;
+  animation: fadeInTitle 1s ease-out 0.3s forwards;
+  transform-style: preserve-3d;
+  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
 }
 
-/* Fade-in animation for title */
 @keyframes fadeInTitle {
-from {
-  opacity: 0;
+  from { opacity: 0; transform: translateY(-20px) translateZ(-50px); }
+  to { opacity: 1; transform: translateY(0) translateZ(0); }
 }
-to {
-  opacity: 1;
-}
+
+/* Links wrapper */
+.links-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  max-width: 550px;  /* Slightly smaller max-width */
+  display: flex;
+  flex-direction: column;
+  gap: 25px;  /* Increased gap between links */
+  transform-style: preserve-3d;
 }
 
 .links-list a {
   text-decoration: none;
   width: 100%;
-  color: white;
+  color: #ffffff;
 }
 
-/* List of links */
-.links-list {
-list-style: none;
-padding: 0;
-margin: 0;
-width: 100%;
-max-width: 500px; /* Set a maximum width for the links */
-display: flex;
-flex-direction: column; /* Stack links vertically */
-align-items: center; /* Center the list itself */
-}
-
-/* Each link item */
+/* Individual link items */
 .link-item {
-display: flex;
-justify-content: space-between;
-align-items: center;
-margin: 15px 0;
-padding: 10px;
-background-color: #1c1c1c; /* Slightly lighter background for each item */
-border-radius: 8px;
-width: 100%; /* Ensure the item takes full width */
-opacity: 0;
-transform: translateY(20px);
-animation: slideIn 0.6s ease-out forwards;
-animation-delay: calc(var(--link-index) * 0.2s); /* Stagger animation for each link */
-padding-inline: 5%;
-}
-
-/* Slide-in animation for link items */
-@keyframes slideIn {
-from {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 12px 20px;  /* Slightly smaller padding */
+  width: 90%;  /* Slightly smaller width */
+  margin: 0 auto;  /* Center the links */
   opacity: 0;
-  transform: translateY(20px);
-}
-to {
-  opacity: 1;
-  transform: translateY(0);
-}
+  transform: translateY(20px) translateZ(0);
+  animation: slideIn 0.5s ease-out forwards;
+  animation-delay: calc(var(--link-index) * 0.1s);
+  transition: all 0.3s ease;
+  transform-style: preserve-3d;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);  /* Lighter default shadow */
 }
 
-/* Styling the link content */
+.link-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+  transform: translateY(-2px) translateZ(30px) rotateX(5deg);
+  box-shadow: 
+    0 15px 35px rgba(0, 0, 0, 0.2),
+    0 5px 15px rgba(0, 0, 0, 0.1),
+    0 8px 10px -5px rgba(0, 0, 0, 0.4);  /* Added undershadow on hover */
+}
+
+@keyframes slideIn {
+  from { 
+    opacity: 0;
+    transform: translateY(20px) translateZ(-50px) rotateX(-10deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0) rotateX(0);
+  }
+}
+
+/* Link content layout */
 .link-content {
-display: flex;
-justify-content: space-between;
-align-items: center;
-width: 100%;
-transition: transform 0.3s ease, background-color 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 15px;
+  transition: transform 0.2s ease;
+  transform-style: preserve-3d;
 }
 
-/* Hover effect for link items */
 .link-item:hover .link-content {
-transform: scale(1.03);
+  transform: scale(1.01) translateZ(20px);
 }
 
-/* Styling the name on the left */
+/* Link text elements */
 .link-name {
-font-size: 1.2em;
-font-weight: bold;
-flex: 1;
-text-align: left;
+  font-size: 1em;  /* Smaller font size */
+  font-weight: 500;
+  color: #ffffff;
+  flex: 1;
+  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
 }
 
-/* Center the description text */
 .link-description {
-font-size: 1em;
-color: rgba(255, 255, 255, 0.7); /* Lighter text color */
-text-align: center;
-flex: 2;
-display: flex;
-justify-content: center;
+  font-size: 0.9em;  /* Smaller font size */
+  color: rgba(255, 255, 255, 0.7);
+  text-align: center;
+  flex: 2;
+  transform: translateZ(10px);
 }
 
-/* Icons on the right */
-.link-icon-nav {
-font-size: 1.5em;
-color: white;
-}
-
-/* Styling for logos */
+/* Icons */
+.link-icon-nav,
 .links-link-icon {
-display: flex;
-color: white;
-font-size: 1.5em;
-transition: color 0.3s ease;
+  font-size: 1.2em;  /* Slightly smaller icons */
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.3s ease;
+  transform: translateZ(15px);
 }
 
-/* Media query for smaller screens */
+.link-item:hover .link-icon-nav,
+.link-item:hover .links-link-icon {
+  color: #ffffff;
+  transform: translateZ(25px) scale(1.1);
+}
+
+/* Mobile responsiveness */
 @media (max-width: 800px) {
-.links-container {
-  padding: 15px;
-  justify-content: flex-start;
-}
+  .links-container {
+    padding: 30px 15px;
+  }
 
-.links-title {
-  font-size: 1.8em;
-}
+  .links-title {
+    font-size: 2em;
+    margin-bottom: 25px;
+  }
 
-.link-name {
-  font-size: 1em;
-}
+  .link-item {
+    padding: 10px 18px;  /* Even smaller padding on mobile */
+    width: 85%;  /* Slightly smaller width on mobile */
+  }
 
-.link-description {
-  font-size: 0.9em;
-}
+  .link-name {
+    font-size: 0.95em;
+  }
 
-.link-icon {
-  font-size: 1.2em;
-}
+  .link-description {
+    font-size: 0.85em;
+  }
 
-.link-item {
-  width: 85%;
-}
+  .link-icon-nav,
+  .links-link-icon {
+    font-size: 1.1em;
+  }
 }
