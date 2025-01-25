@@ -1,5 +1,5 @@
 import React from 'react';
-import { Routes, Route } from 'react-router-dom';
+import { Routes, Route, useLocation } from 'react-router-dom';
 import Navigation from './Components/Navigation';
 import './App.css';
 import Home from './Components/Home';
@@ -10,8 +10,9 @@ import Projects from './Components/Projects'
 import CoderType from './Components/CoderType'
 
 const App = () => {
+
   return (
-    <div className="app-container">
+    <div className={'app-container'}>
         <Navigation />
         <Routes>
           <Route path="/" element={ <Home /> } />
