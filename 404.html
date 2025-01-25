@@ -7,9 +7,14 @@
     <script type="text/javascript">
       // Get the path from the URL
       var currentPath = window.location.pathname;
-
-      // Redirect to the correct hash URL, only adding hash once
-      window.location.replace(window.location.origin + '#/' + currentPath.substring(1));
+      
+      // Handle root path specially
+      if (currentPath === '/' || currentPath === '') {
+        window.location.replace(window.location.origin + '/#/');
+      } else {
+        // Handle other paths
+        window.location.replace(window.location.origin + '/#' + currentPath);
+      }
     </script>
   </head>
   <body>
