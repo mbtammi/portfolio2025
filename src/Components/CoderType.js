@@ -80,8 +80,6 @@ const codeSnippets = {
   ]
 };
 
-const API_URL = 'https://codertype-backend.onrender.com';  // Your Render URL
-
 const CoderType = () => {
   const [currentSnippet, setCurrentSnippet] = useState('');
   const [userInput, setUserInput] = useState('');
@@ -104,10 +102,9 @@ const CoderType = () => {
   const textareaRef = useRef(null);
 
   useEffect(() => {
-    // Replace the direct database connection with a fetch call
     const loadLeaderboard = async () => {
       try {
-        const response = await fetch(`${API_URL}/api/leaderboard`);
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/api/leaderboard`);
         const data = await response.json();
         setLeaderboard(data);
       } catch (error) {
@@ -154,7 +151,7 @@ const CoderType = () => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/leaderboard`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/leaderboard`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -236,7 +233,7 @@ const CoderType = () => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/leaderboard/user`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/leaderboard/user`, {
         method: 'DELETE',
         headers: {
           'Content-Type': 'application/json',
@@ -265,7 +262,7 @@ const CoderType = () => {
     }
 
     try {
-      const response = await fetch(`${API_URL}/api/leaderboard/all`, {
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/api/leaderboard/all`, {
         method: 'DELETE'
       });
 
