@@ -182,3 +182,120 @@
     justify-content: center;
   }
 }
+
+.experience-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5em;
+  margin: 2em auto;
+  max-width: 1200px;
+  padding: 0 2em;
+}
+
+.experience-card {
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0.05));
+  border-radius: 15px;
+  padding: 1.5em;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  border-color: rgba(255, 214, 10, 0.3);
+}
+
+.experience-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.5em;
+}
+
+.experience-header h3 {
+  color: rgba(255, 214, 10, 0.9);
+  font-size: 1.3em;
+  margin: 0;
+}
+
+.period {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.9em;
+}
+
+.experience-card h4 {
+  color: rgba(255, 255, 255, 0.9);
+  margin: 0.5em 0;
+  font-size: 1.1em;
+}
+
+.experience-card p {
+  color: rgba(255, 255, 255, 0.8);
+  margin: 0.5em 0 0;
+  line-height: 1.5;
+}
+
+@media (max-width: 800px) {
+  .experience-list {
+    padding: 0 1em;
+  }
+  
+  .experience-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.5em;
+  }
+  
+  .experience-card {
+    padding: 1.2em;
+  }
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: center;
+  margin: 2rem 0;
+  background: rgba(44, 44, 44, 0.4);
+  padding: 0.3rem;
+  border-radius: 25px;
+  width: fit-content;
+  margin-left: auto;
+  margin-right: auto;
+  border: 2px solid rgba(255, 214, 10, 0.3);
+}
+
+.toggle-btn {
+  position: relative;
+  padding: 0.8rem 2rem;
+  font-size: 1.1rem;
+  background-color: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.9);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border-radius: 20px;
+  min-width: 120px;
+}
+
+.toggle-btn.active {
+  background-color: rgba(255, 214, 10, 0.2);
+  color: rgba(255, 255, 255, 1);
+}
+
+.active-indicator {
+  display: none;
+}
+
+@media (max-width: 600px) {
+  .toggle-buttons {
+    width: 90%;
+  }
+  
+  .toggle-btn {
+    padding: 0.8rem 1rem;
+    min-width: 100px;
+    font-size: 1rem;
+  }
+}

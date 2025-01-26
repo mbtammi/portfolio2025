@@ -78,8 +78,48 @@ const projects = [
   }
 ];
 
+const workExperience = [
+  {
+    company: 'Tietoevry Oy',
+    period: '2024/06 -',
+    title: 'Mobile Developer',
+    description: 'Developing a custom mobile application for a large dairy company'
+  },
+  {
+    company: 'Tinkerit Oy',
+    period: '2023/07 -',
+    title: 'Chief Executive Officer',
+    description: 'Building a company from the ground up with 3 other founders. Customer outreach. Integration development. Team managing'
+  },
+  {
+    company: 'Woolman Oy',
+    period: '2023/05 - 2024/05',
+    title: 'Full-stack Developer',
+    description: 'Developing online-stores with Shopify for customers'
+  },
+  {
+    company: 'Webso Oy',
+    period: '2023/01 - 2023/05',
+    title: 'Software Developer',
+    description: 'Developing it-products for customers. Working in an agile enviroment in a startup'
+  },
+  {
+    company: 'Nordea',
+    period: '2022/05 - 2022/09',
+    title: 'IT-Developer',
+    description: 'Performance testing services. Implementing features on the mobile application'
+  },
+  {
+    company: 'Jyväskylä University',
+    period: '2022 - 2023',
+    title: 'Programming Course Advisor',
+    description: 'Helping students with course\'s weekly tasks. Creating and supervising the course exam'
+  }
+];
+
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
+  const [showProjects, setShowProjects] = useState(true);
   const [technologies, setTechnologies] = useState([
     ...new Set(projects.flatMap(project => project.stack))
   ]);
@@ -90,6 +130,10 @@ const Projects = () => {
 
   const closeModal = () => {
     setSelectedProject(null);
+  };
+
+  const toggleView = () => {
+    setShowProjects(!showProjects);
   };
 
   const shuffleTechnologies = () => {
@@ -108,7 +152,8 @@ const Projects = () => {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2
+        staggerChildren: 0.1,
+        delayChildren: 0.2
       }
     }
   };
@@ -116,26 +161,13 @@ const Projects = () => {
   const cardVariants = {
     hidden: { 
       opacity: 0,
-      y: 50,
-      scale: 0.95
+      y: 20
     },
     visible: {
       opacity: 1,
       y: 0,
-      scale: 1,
       transition: {
-        type: "spring",
-        stiffness: 100,
-        damping: 12
-      }
-    },
-    hover: {
-      scale: 1.03,
-      y: -10,
-      transition: {
-        type: "spring",
-        stiffness: 400,
-        damping: 10
+        duration: 0.4
       }
     }
   };
@@ -181,65 +213,135 @@ const Projects = () => {
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
     >
-      <motion.h2 
-        className="projects-title"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.6 }}
-      >
-        My Projects
-      </motion.h2>
-      <motion.p 
-        className='project-title-text'
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
-      >
-        Click on the cards for more info.
-      </motion.p>
-      <motion.div 
-        className="projects-list"
-        variants={containerVariants}
-      >
-        {projects.map((project, index) => (
-          <motion.div
-            className="project-card"
-            key={index}
-            variants={cardVariants}
-            whileHover="hover"
-            onClick={() => openModal(project)}
+      <div className="view-selector">
+        <motion.div 
+          className="toggle-buttons"
+          initial={{ y: -20, opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.button
+            className={`toggle-btn ${!showProjects ? 'active' : ''}`}
+            onClick={() => setShowProjects(false)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
           >
-            <div className="project-card-header">
-              <motion.img 
-                src={project.image} 
-                alt={project.name} 
-                className="project-image"
-                whileHover={{ scale: 1.1, opacity: 0.3 }}
-                transition={{ duration: 0.3 }}
-              />
-              <div className="project-title">
-                <h2>{project.name}</h2>
-                {project.codeLink && (
-                  <motion.a 
-                    href={project.codeLink} 
-                    target="_blank" 
-                    rel="noopener noreferrer" 
-                    className="project-link"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                  >
-                    View Code
-                  </motion.a>
-                )}
-              </div>
-            </div>
-            <p className="project-description">{project.description}</p>
-          </motion.div>
-        ))}
-      </motion.div>
+            Work
+            {!showProjects && <motion.div className="active-indicator" layoutId="activeIndicator" />}
+          </motion.button>
+          <motion.button
+            className={`toggle-btn ${showProjects ? 'active' : ''}`}
+            onClick={() => setShowProjects(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Projects
+            {showProjects && <motion.div className="active-indicator" layoutId="activeIndicator" />}
+          </motion.button>
+        </motion.div>
+      </div>
 
-      {selectedProject && <Modal project={selectedProject} closeModal={closeModal} />}
-      
+      {!showProjects && (
+        <>
+          <motion.h2 
+            className="projects-title"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            Work Experience
+          </motion.h2>
+          <motion.div 
+            className="experience-list"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            viewport={{ once: true }}
+          >
+            {workExperience.map((job, index) => (
+              <motion.div
+                className="experience-card"
+                key={index}
+                variants={cardVariants}
+              >
+                <div className="experience-header">
+                  <h3>{job.company}</h3>
+                  <span className="period">{job.period}</span>
+                </div>
+                <h4>{job.title}</h4>
+                <p>{job.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+        </>
+      )}
+
+      {showProjects && (
+        <>
+          <motion.h2 
+            className="projects-title"
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            My Projects
+          </motion.h2>
+          <motion.p 
+            className='project-title-text'
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 0.3 }}
+          >
+            Click on the cards for more info.
+          </motion.p>
+          <motion.div 
+            className="projects-list"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
+            viewport={{ once: true }}
+          >
+            {projects.map((project, index) => (
+              <motion.div
+                className="project-card"
+                key={index}
+                variants={cardVariants}
+                whileHover="hover"
+                onClick={() => openModal(project)}
+              >
+                <div className="project-card-header">
+                  <motion.img 
+                    src={project.image} 
+                    alt={project.name} 
+                    className="project-image"
+                    whileHover={{ scale: 1.1, opacity: 0.3 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                  <div className="project-title">
+                    <h2>{project.name}</h2>
+                    {project.codeLink && (
+                      <motion.a 
+                        href={project.codeLink} 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="project-link"
+                        whileHover={{ scale: 1.1 }}
+                        whileTap={{ scale: 0.95 }}
+                      >
+                        View Code
+                      </motion.a>
+                    )}
+                  </div>
+                </div>
+                <p className="project-description">{project.description}</p>
+              </motion.div>
+            ))}
+          </motion.div>
+
+          {selectedProject && <Modal project={selectedProject} closeModal={closeModal} />}
+        </>
+      )}
+
       <motion.div
         className="project-stack"
         variants={techStackVariants}
@@ -252,7 +354,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Technology used in these projects:
+          Technology I have used:
         </motion.h4>
         <motion.ul>
           {technologies.map((tech, idx) => (

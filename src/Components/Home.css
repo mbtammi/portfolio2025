@@ -29,7 +29,7 @@ html, body {
   text-align: left;
 }
 .home-header h2 {
-  font-size: 2em;
+  font-size: 2.5em;
   margin: 0;
   font-weight: 600;
   background: linear-gradient(45deg, #ffffff, #e0e0e0);
@@ -39,6 +39,7 @@ html, body {
   transform-style: preserve-3d;
   animation: fadeInTitle 1s ease-out 0.3s forwards;
   opacity: 0;
+  margin-bottom: 30px;
 }
 
 @keyframes fadeInTitle {

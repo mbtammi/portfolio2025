@@ -26,7 +26,7 @@ const Navigation = () => {
             to="/projects"
             className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
           >
-            Projects
+            Work
           </NavLink>
         </li>
         <li>
