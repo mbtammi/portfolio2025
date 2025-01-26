@@ -31,6 +31,73 @@ const codeSnippets = {
     `function fibonacci(n) {
   if (n <= 1) return n;
   return fibonacci(n - 1) + fibonacci(n - 2);
+}`,
+    `class Stack {
+  constructor() {
+    this.items = [];
+  }
+  push(element) {
+    this.items.push(element);
+  }
+  pop() {
+    if(this.items.length === 0) return null;
+    return this.items.pop();
+  }
+  peek() {
+    return this.items[this.items.length - 1];
+  }
+}`,
+    `function binarySearch(arr, target) {
+  let left = 0;
+  let right = arr.length - 1;
+  
+  while (left <= right) {
+    let mid = Math.floor((left + right) / 2);
+    if (arr[mid] === target) return mid;
+    if (arr[mid] < target) left = mid + 1;
+    else right = mid - 1;
+  }
+  return -1;
+}`,
+    `const debounce = (func, delay) => {
+  let timeoutId;
+  return (...args) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => {
+      func.apply(this, args);
+    }, delay);
+  };
+}`,
+    `function mergeSort(arr) {
+  if (arr.length <= 1) return arr;
+  const mid = Math.floor(arr.length / 2);
+  const left = arr.slice(0, mid);
+  const right = arr.slice(mid);
+  return merge(mergeSort(left), mergeSort(right));
+}`,
+    `const memoize = (fn) => {
+  const cache = new Map();
+  return (...args) => {
+    const key = JSON.stringify(args);
+    if (cache.has(key)) return cache.get(key);
+    const result = fn.apply(this, args);
+    cache.set(key, result);
+    return result;
+  };
+}`,
+    `function isPalindrome(str) {
+  str = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+  return str === str.split('').reverse().join('');
+}`,
+    `const throttle = (func, limit) => {
+  let inThrottle;
+  return function(...args) {
+    if (!inThrottle) {
+      func.apply(this, args);
+      inThrottle = true;
+      setTimeout(() => inThrottle = false, limit);
+    }
+  }
 }`
   ],
   python: [
@@ -52,7 +119,58 @@ const codeSnippets = {
     def __init__(self, data):
         self.data = data
         self.next = None
-        self.prev = None`
+        self.prev = None`,
+    `def binary_search(arr, target):
+    left, right = 0, len(arr) - 1
+    while left <= right:
+        mid = (left + right) // 2
+        if arr[mid] == target:
+            return mid
+        elif arr[mid] < target:
+            left = mid + 1
+        else:
+            right = mid - 1
+    return -1`,
+    `def merge_sort(arr):
+    if len(arr) <= 1:
+        return arr
+    mid = len(arr) // 2
+    left = merge_sort(arr[:mid])
+    right = merge_sort(arr[mid:])
+    return merge(left, right)`,
+    `class Queue:
+    def __init__(self):
+        self.items = []
+    
+    def enqueue(self, item):
+        self.items.append(item)
+    
+    def dequeue(self):
+        if not self.is_empty():
+            return self.items.pop(0)
+        return None`,
+    `def factorial(n):
+    if n == 0 or n == 1:
+        return 1
+    return n * factorial(n - 1)`,
+    `def is_prime(n):
+    if n < 2:
+        return False
+    for i in range(2, int(n ** 0.5) + 1):
+        if n % i == 0:
+            return False
+    return True`,
+    `def gcd(a, b):
+    while b:
+        a, b = b, a % b
+    return a`,
+    `def depth_first_search(graph, start, visited=None):
+    if visited is None:
+        visited = set()
+    visited.add(start)
+    for next in graph[start] - visited:
+        depth_first_search(graph, next, visited)
+    return visited`
   ],
   java: [
     `public class BinarySearch {
@@ -76,6 +194,98 @@ const codeSnippets = {
         mergeSort(arr, m + 1, r);
         merge(arr, l, m, r);
     }
+}`,
+    `public class LinkedList<T> {
+    private Node<T> head;
+    
+    private static class Node<T> {
+        T data;
+        Node<T> next;
+        
+        Node(T data) {
+            this.data = data;
+            this.next = null;
+        }
+    }
+}`,
+    `public static int fibonacci(int n) {
+    if (n <= 1) return n;
+    int a = 0, b = 1;
+    for (int i = 2; i <= n; i++) {
+        int temp = a + b;
+        a = b;
+        b = temp;
+    }
+    return b;
+}`,
+    `public class Stack<T> {
+    private ArrayList<T> items;
+    
+    public Stack() {
+        items = new ArrayList<>();
+    }
+    
+    public void push(T item) {
+        items.add(item);
+    }
+    
+    public T pop() {
+        if (isEmpty()) return null;
+        return items.remove(items.size() - 1);
+    }
+}`,
+    `public static boolean isPalindrome(String str) {
+    str = str.toLowerCase().replaceAll("[^a-zA-Z0-9]", "");
+    int left = 0, right = str.length() - 1;
+    
+    while (left < right) {
+        if (str.charAt(left) != str.charAt(right)) return false;
+        left++;
+        right--;
+    }
+    return true;
+}`,
+    `public static void bubbleSort(int[] arr) {
+    int n = arr.length;
+    for (int i = 0; i < n - 1; i++) {
+        for (int j = 0; j < n - i - 1; j++) {
+            if (arr[j] > arr[j + 1]) {
+                int temp = arr[j];
+                arr[j] = arr[j + 1];
+                arr[j + 1] = temp;
+            }
+        }
+    }
+}`,
+    `public class Queue<T> {
+    private LinkedList<T> list;
+    
+    public Queue() {
+        list = new LinkedList<>();
+    }
+    
+    public void enqueue(T item) {
+        list.addLast(item);
+    }
+    
+    public T dequeue() {
+        return list.pollFirst();
+    }
+}`,
+    `public static int gcd(int a, int b) {
+    while (b != 0) {
+        int temp = b;
+        b = a % b;
+        a = temp;
+    }
+    return a;
+}`,
+    `public static boolean isPrime(int n) {
+    if (n <= 1) return false;
+    for (int i = 2; i <= Math.sqrt(n); i++) {
+        if (n % i == 0) return false;
+    }
+    return true;
 }`
   ]
 };
