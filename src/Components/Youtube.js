@@ -19,7 +19,7 @@ const Youtube = () => {
           params: {
             part: 'id',
             channelId: channelId,
-            maxResults: 10,
+            maxResults: 20,
             order: 'date',
             key: apiKey,
           },

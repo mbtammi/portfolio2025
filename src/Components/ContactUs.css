@@ -48,6 +48,10 @@ body {
     color: #ddd;
     background-color: #222; /* Dark background for input fields */
   }
+
+  textarea {
+    height: 150px;
+  }
   
   /* Input field focus */
   .form-section input:focus, .form-section textarea:focus {

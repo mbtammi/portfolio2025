@@ -540,6 +540,7 @@ const CoderType = () => {
             <pre>{currentSnippet}</pre>
           </div>
           <textarea
+            className='textarea-codertype'
             ref={textareaRef}
             value={userInput}
             onChange={handleInput}
