@@ -15,7 +15,7 @@ const Home = () => {
           <div className="home-image-section">
             <img
               src={Miro2}
-              alt="Miro"
+              alt="Miro Tammi"
               className="home-large-image"
             />
           </div>
