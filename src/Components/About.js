@@ -6,7 +6,7 @@ const About = () => {
   return (
     <div className="about-container">
       <section className="about-skills">
-        <h2>About Me</h2>
+        {/* <h2>About Me</h2>
         <p>
           Hi, I'm a passionate and dedicated software developer with a journey that began in 2020. I specialize in building exceptional web applications, mastering technologies like <strong>React, TypeScript, JavaScript,</strong> and <strong>CSS</strong>. With expertise in database management and cloud systems, I have a proven track record of delivering robust API solutions and completing entire projects independently.
         </p>
@@ -21,7 +21,7 @@ const About = () => {
         </p>
         <p>
           If there's one thing that defines me, it's my work ethic. I'm one of the most hardworking individuals you'll meet, constantly striving to outwork others and deliver results. While I may not always have the perfect solution, my commitment to excellence ensures I will always find a way to succeed.
-        </p>
+        </p> */}
         <h2>Skills & Expertise</h2>
         <ul>
           <li>

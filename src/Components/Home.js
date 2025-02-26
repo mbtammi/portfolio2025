@@ -38,7 +38,7 @@ const Home = () => {
               </div>
             </a>
             <a
-              href="https://www.linkedin.com/in/yourlinkedin"
+              href="https://www.linkedin.com/in/miro-tammi-701bb3205/"
               target="_blank"
               rel="noopener noreferrer"
               className="link-button linkedin"
@@ -49,7 +49,7 @@ const Home = () => {
               </div>
             </a>
             <a
-              href="https://github.com/yourgithub"
+              href="https://github.com/mbtammi"
               target="_blank"
               rel="noopener noreferrer"
               className="link-button github"

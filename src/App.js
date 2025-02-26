@@ -19,7 +19,8 @@ const App = () => {
 
   useEffect(() => {
     // Send a page view event on route change
-    ReactGA.send({ hitType: "pageview", page: location.pathname });
+    const pagePath = window.location.hash.replace("#", "") || "/";
+    ReactGA.send({ hitType: "pageview", page: pagePath });
   }, [location]);
 
   return (
