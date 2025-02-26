@@ -29,20 +29,20 @@ const About = () => {
             <span className="skill-text">Software Development:</span> Expert in <strong>React, TypeScript, JavaScript, CSS</strong>, and building complete solutions from scratch.
           </li>
           <li>
-            <FaReact className="skill-icon" />
-            <span className="skill-text">Web Development:</span> Proficient in creating modern and responsive web applications, combining clean code with strong design principles.
-          </li>
-          <li>
-            <FaDatabase className="skill-icon" />
-            <span className="skill-text">Database & Cloud Systems:</span> Skilled in managing relational and non-relational databases and deploying cloud-based solutions.
-          </li>
-          <li>
             <FaBusinessTime className="skill-icon" />
             <span className="skill-text">Leadership & Business Strategy:</span> Experienced as a CEO and team leader, with a solid foundation in business strategy and customer relations.
           </li>
           <li>
             <FaVideo className="skill-icon" />
             <span className="skill-text">Content Creation & Storytelling:</span> Advanced in scriptwriting, video production, and editing to build a successful YouTube channel.
+          </li>
+          <li>
+            <FaReact className="skill-icon" />
+            <span className="skill-text">Web Development:</span> Proficient in creating modern and responsive web applications, combining clean code with strong design principles.
+          </li>
+          <li>
+            <FaDatabase className="skill-icon" />
+            <span className="skill-text">Database & Cloud Systems:</span> Skilled in managing relational and non-relational databases and deploying cloud-based solutions.
           </li>
           <li>
             <FaMicrophone className="skill-icon" />
