@@ -9,6 +9,7 @@ import Youtube from './Components/Youtube';
 import Links from './Components/Links'
 import Projects from './Components/Projects'
 import CoderType from './Components/CoderType'
+import UusioperheGame from './Components/UusioperheGame';
 
 // Initialize Google Analytics with your Measurement ID
 const TRACKING_ID = process.env.REACT_APP_GA_TRACKING_ID; 
@@ -33,6 +34,7 @@ const App = () => {
         <Route path="/youtube" element={<Youtube />} />
         <Route path="/links" element={<Links />} />
         <Route path="/codertype" element={<CoderType />} />
+        <Route path="/uusioperhe" element={<UusioperheGame />} />
       </Routes>
     </div>
   );

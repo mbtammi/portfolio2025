@@ -1,0 +1,279 @@
+.uusioperhe-game-container {
+  max-width: 1100px;
+  margin: 40px auto;
+  background: #f7f7f7;
+  border-radius: 16px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.08);
+  padding: 32px;
+  font-family: 'Segoe UI', Arial, sans-serif;
+}
+.team-select {
+  margin-bottom: 24px;
+}
+.players-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
+.player-side {
+  flex: 1;
+  background: #fff;
+  border-radius: 12px;
+  margin: 0 12px;
+  padding: 24px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.05);
+  position: relative;
+  min-height: 50vh;
+}
+
+.player-side::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.45);
+  border-radius: 12px;
+  z-index: 1;
+}
+
+.player-side > * {
+  position: relative;
+  z-index: 2;
+}
+.player-side.left {
+  border: 2px solid #4e9cff;
+}
+.player-side.right {
+  border: 2px solid #ffb14e;
+}
+
+.shared-words-section {
+  background: #ffffff;
+  border-radius: 16px;
+  padding: 24px;
+  margin: 24px 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+  text-align: center;
+  border: 3px solid #4e9cff;
+}
+
+.shared-words-section h3 {
+  margin: 0 0 16px 0;
+  color: #2d2d2d;
+  font-size: 24px;
+}
+
+.shared-input-display {
+  margin-top: 16px;
+  font-size: 18px;
+  color: #666;
+  background: #f8f9fa;
+  padding: 12px;
+  border-radius: 8px;
+  font-family: monospace;
+}
+
+.player-img {
+  width: 120px;
+  height: 120px;
+  margin-bottom: 12px;
+  border-radius: 50%;
+  background: #e0e0e0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.img-placeholder {
+  color: #888;
+  font-size: 18px;
+}
+.words-display {
+  margin: 16px 0;
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.word-item {
+  padding: 12px 20px;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+  display: inline-block;
+}
+
+.current-word {
+  font-size: 32px;
+  font-weight: bold;
+  color: #2d2d2d;
+  background: linear-gradient(135deg, #eaf6ff 0%, #d1e7ff 100%);
+  border: 3px solid #4e9cff;
+  box-shadow: 0 4px 12px rgba(78, 156, 255, 0.2);
+  position: relative;
+}
+
+.current-word::before {
+  content: "Nykyinen: ";
+  font-size: 14px;
+  color: #4e9cff;
+  font-weight: normal;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.next-word {
+  font-size: 20px;
+  font-weight: 500;
+  color: #888;
+  background: #f8f9fa;
+  border: 2px solid #e9ecef;
+  opacity: 0.8;
+  position: relative;
+}
+
+.next-word::before {
+  content: "Seuraava: ";
+  font-size: 14px;
+  color: #666;
+  font-weight: normal;
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.word-letters {
+  display: inline-block;
+}
+
+.letter {
+  display: inline-block;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  padding: 2px 1px;
+  margin: 0 1px;
+}
+
+.letter.correct {
+  background-color: #4caf50;
+  color: white;
+  box-shadow: 0 2px 4px rgba(76, 175, 80, 0.3);
+}
+
+.letter.incorrect {
+  background-color: #f44336;
+  color: white;
+  box-shadow: 0 2px 4px rgba(244, 67, 54, 0.3);
+}
+
+.letter.current {
+  background-color: #2196f3;
+  color: white;
+  animation: pulse 1s infinite;
+  box-shadow: 0 2px 8px rgba(33, 150, 243, 0.5);
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+@keyframes beerPopIn {
+  0% { 
+    transform: scale(0) rotate(-10deg);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.2) rotate(5deg);
+  }
+  100% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+}
+
+@keyframes beerPopOut {
+  0% { 
+    transform: scale(1) rotate(0deg);
+    opacity: 1;
+  }
+  100% { 
+    transform: scale(0) rotate(10deg);
+    opacity: 0;
+  }
+}
+
+.beer-overlay {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: none;
+}
+
+.beer-image {
+  width: 120px;
+  height: auto;
+  filter: drop-shadow(0 4px 12px rgba(0,0,0,0.3));
+}
+
+.beer-overlay.drinking {
+  animation: beerPopIn 0.5s ease-out forwards;
+}
+
+.beer-overlay.stopping {
+  animation: beerPopOut 0.3s ease-in forwards;
+}
+
+.player-side {
+  position: relative;
+}
+
+.word {
+  font-weight: bold;
+  font-size: 22px;
+  color: #2d2d2d;
+  background: #eaf6ff;
+  padding: 4px 12px;
+  border-radius: 8px;
+}
+.game-controls {
+  text-align: center;
+  margin-bottom: 24px;
+}
+.timer {
+  font-size: 24px;
+  font-weight: bold;
+  color: #d14e4e;
+  margin: 12px 0;
+}
+.scoreboard {
+  background: #fffbe6;
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 18px;
+  box-shadow: 0 1px 8px rgba(0,0,0,0.04);
+}
+.instructions {
+  background: #eaf6ff;
+  border-radius: 10px;
+  padding: 18px;
+  margin-top: 18px;
+}
+.instructions ul {
+  margin: 0;
+  padding-left: 20px;
+}
+.instructions li {
+  margin-bottom: 8px;
+  font-size: 16px;
+}
