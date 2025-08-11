@@ -1,22 +1,29 @@
 {
   "files": {
-    "main.css": "/static/css/main.92d6c9e0.css",
-    "main.js": "/static/js/main.b1ee5ef3.js",
+    "main.css": "/static/css/main.cd8beae2.css",
+    "main.js": "/static/js/main.ff4b4c10.js",
+    "static/media/Miro.png": "/static/media/Miro.1b7a453b805e3e45cfe8.png",
+    "static/media/Juuso.png": "/static/media/Juuso.4c683da66028c0fc5876.png",
+    "static/media/KaitsuLassiMinea.png": "/static/media/KaitsuLassiMinea.b10472f4a89898b46f1a.png",
     "static/media/kaasalainen.png": "/static/media/kaasalainen.ac1622bb55e757531558.png",
+    "static/media/EemilJaJesse.png": "/static/media/EemilJaJesse.bbf8e0f673eed5d731e0.png",
+    "static/media/Roni_Markus.png": "/static/media/Roni_Markus.0b8c2c3ae670c66f5817.png",
     "static/media/tinkerit.png": "/static/media/tinkerit.262bb6b23f73ba237c00.png",
+    "static/media/kurjala.png": "/static/media/kurjala.ead13c754c8be4839549.png",
     "static/media/Miro2.webp": "/static/media/Miro2.cbdd64a1afa6c2fd3a8b.webp",
     "static/media/kyssari.png": "/static/media/kyssari.3c552493572fdd03f0e4.png",
     "static/media/niko.png": "/static/media/niko.32a50278d8128c4291d6.png",
+    "static/media/SanttuJaEmsku.png": "/static/media/SanttuJaEmsku.385b966cb90b47f9089c.png",
     "static/media/Once-2.png": "/static/media/Once-2.b626501fe04c047df551.png",
     "static/media/hyvy.png": "/static/media/hyvy.4f2968809b73261af49e.png",
     "static/media/saa.png": "/static/media/saa.96aa661813b42785bff1.png",
     "static/media/movit.png": "/static/media/movit.7e1758171c4db5cb4466.png",
     "index.html": "/index.html",
-    "main.92d6c9e0.css.map": "/static/css/main.92d6c9e0.css.map",
-    "main.b1ee5ef3.js.map": "/static/js/main.b1ee5ef3.js.map"
+    "main.cd8beae2.css.map": "/static/css/main.cd8beae2.css.map",
+    "main.ff4b4c10.js.map": "/static/js/main.ff4b4c10.js.map"
   },
   "entrypoints": [
-    "static/css/main.92d6c9e0.css",
-    "static/js/main.b1ee5ef3.js"
+    "static/css/main.cd8beae2.css",
+    "static/js/main.ff4b4c10.js"
   ]
 }
