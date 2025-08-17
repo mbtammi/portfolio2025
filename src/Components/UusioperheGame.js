@@ -292,9 +292,9 @@ const UusioperheGame = () => {
         e.preventDefault(); // Prevent default browser behavior (scrolling for spacebar)
         // Always move to next word when Enter/Space is pressed
         // Only one player should submit, prioritize based on who can actually type
-        if ((!leftDrinking && !leftBeerFinished) || (leftDrinking && !leftBeerFinished && !leftRestrictedKeys.includes(e.key))) {
+        if (!leftDrinking || (leftDrinking && !leftBeerFinished && !leftRestrictedKeys.includes(e.key))) {
           handleLeftSubmit();
-        } else if ((!rightDrinking && !rightBeerFinished) || (rightDrinking && !rightBeerFinished && !rightRestrictedKeys.includes(e.key))) {
+        } else if (!rightDrinking || (rightDrinking && !rightBeerFinished && !rightRestrictedKeys.includes(e.key))) {
           handleRightSubmit();
         }
         return;
