@@ -12,13 +12,15 @@ import movit from '../Images/movit.png'
 import globe from '../Images/globe.png'
 import cardgame from '../Images/cardgame.png'
 import flexliving from '../Images/flexliving.png'
+import tryingtocreate from '../Images/tryingtocreate.png'
 import Modal from './Modal';
 
 const projects = [
     {
     name: 'WorldOfTheMaps',
-    description: 'Wordle for Maps (Private code)',
+    description: 'Wordle for Maps, a fun daily game (Private code)',
     codeLink: '',
+    weblink: 'https://worldofthemaps.com',
     longDescription: 'A game inspired by Wordle but for maps. The user has to guess the country based on the map shown. The user gets hints based on how close the guess is to the actual country. The game is built with React and uses a custom API to fetch the maps and country data. Check it our at https://worldofthemaps.com',
     image: globe,
     stack: ['Vite', 'React', 'JavaScript', 'Globe Gl'],
@@ -26,6 +28,7 @@ const projects = [
   {
     name: 'PlayAnyCardGame',
     description: 'Describe the rules of the game and Create it!',
+    weblink: 'https://playanycardgame.com',
     codeLink: 'https://github.com/mbtammi/playanycardgame',
     longDescription: 'A web app that uses OpenAI to create card games based on user input. The user can describe the rules of the game and the app will generate a playable version of the game. The app is built with React and uses OpenAI\'s GPT-3.5 to generate the game rules and logic. Newsletter at https://playanycardgame.com',
     image: cardgame,
@@ -39,6 +42,15 @@ const projects = [
     image: flexliving,
     stack: ['Next.js', 'TailwindCSS', 'Vercel', 'NodeJS'],
   },
+    {
+    name: 'TryingToCreate',
+    description: 'Generate new YouTube ideas With AI! (Private code)',
+    weblink: 'https://tryingtocreate.com',
+    codeLink: '',
+    longDescription: 'A web app where you can generate new YouTube video ideas with the help of AI. The user can input a topic and the app will generate a list of video ideas based on the topic. User can also generate the thumbnail mockup for the video. It is deployed on Vercel.',
+    image: tryingtocreate,
+    stack: ['Stripe', 'Node.js', 'CustomAPI', 'Firebase'],
+  },
   {
     name: 'Movit-Integration',
     description: 'Integration between a website and Movit (Private code)',
@@ -46,6 +58,24 @@ const projects = [
     longDescription: 'Building a complex integration between multiple taxi companies and a driving management system. Talking a lot with the Movit system admins to get everything working and guiding them on how to proceed in the future to ease the integration process in the future.',
     image: movit,
     stack: ['CSS', 'React', 'RestAPI'],
+  },
+  {
+    name: 'OnceADay',
+    description: 'A habit tracker for Android (In development)',
+    codeLink: '',
+    weblink: 'https://play.google.com/store/apps/details?id=com.mirotrying.mironappsimple',
+    longDescription: 'The simplest habit tracker since all the other ones are too complex. Wanted to see how you upload an app to the Play Store.',
+    image: Once,
+    stack: ['React Native', 'Expo GO'],
+  },
+  {
+    name: 'Tinkerit',
+    description: 'Developing a scalable website and a business (Private code)',
+    codeLink: '',
+    weblink: 'https://tinkerit.fi',
+    longDescription: 'My business co-founded with my university colleagues. I operate as a CEO on this business and handle day to day activities. I also participate in coding processes and guide the other Co-founders on business related topics.',
+    image: tinkerit,
+    stack: ['Javascript', 'EmailJS'],
   },
   {
     name: 'HyvyApp',
@@ -64,22 +94,6 @@ const projects = [
     stack: ['NodeJS', 'React'],
   },
   {
-    name: 'Weather App',
-    description: 'Single-page app with a REST API to get weather info',
-    codeLink: 'https://github.com/mbtammi/fullstack/tree/master/osa2/maidentiedot',
-    longDescription: 'Building a weather app with the help of RestAPI to fetch the data from online based on location provided by the user. Great Full Stack experience gained.',
-    image: saa,
-    stack: ['CSS', 'React', 'RestAPI'],
-  },
-  {
-    name: 'Tinkerit',
-    description: 'Developing a scalable website and a business (Private code)',
-    codeLink: '',
-    longDescription: 'My business co-founded with my university colleagues. I operate as a CEO on this business and handle day to day activities. I also participate in coding processes and guide the other Co-founders on business related topics.',
-    image: tinkerit,
-    stack: ['Javascript', 'EmailJS'],
-  },
-  {
     name: 'Eristyspalvelu Kaasalainen',
     description: 'A local insulation service business (Private code)',
     codeLink: '',
@@ -88,12 +102,12 @@ const projects = [
     stack: ['RestAPI', 'HTML', 'React', 'CSS'],
   },
   {
-    name: 'OnceADay',
-    description: 'A habit tracker for Android (In development)',
-    codeLink: '',
-    longDescription: 'The simplest habit tracker since all the other ones are too complex. Wanted to see how you upload an app to the Play Store.',
-    image: Once,
-    stack: ['React Native', 'Expo GO'],
+    name: 'Weather App',
+    description: 'Single-page app with a REST API to get weather info',
+    codeLink: 'https://github.com/mbtammi/fullstack/tree/master/osa2/maidentiedot',
+    longDescription: 'Building a weather app with the help of RestAPI to fetch the data from online based on location provided by the user. Great Full Stack experience gained.',
+    image: saa,
+    stack: ['CSS', 'React', 'RestAPI'],
   },
   {
     name: 'Future?',
@@ -355,18 +369,32 @@ const Projects = () => {
                   />
                   <div className="project-title">
                     <h2>{project.name}</h2>
-                    {project.codeLink && (
-                      <motion.a 
-                        href={project.codeLink} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
-                        className="project-link"
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.95 }}
-                      >
-                        View Code
-                      </motion.a>
-                    )}
+                    <div className="project-links">
+                      {project.codeLink && (
+                        <motion.a 
+                          href={project.codeLink} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="project-link code-link"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          View Code
+                        </motion.a>
+                      )}
+                      {project.weblink && (
+                        <motion.a 
+                          href={project.weblink} 
+                          target="_blank" 
+                          rel="noopener noreferrer" 
+                          className="project-link site-link"
+                          whileHover={{ scale: 1.1 }}
+                          whileTap={{ scale: 0.95 }}
+                        >
+                          Link to Site
+                        </motion.a>
+                      )}
+                    </div>
                   </div>
                 </div>
                 <p className="project-description">{project.description}</p>
