@@ -1,12 +1,12 @@
 {
   "files": {
-    "main.css": "/static/css/main.92d6c9e0.css",
-    "main.js": "/static/js/main.d8f5bd73.js",
+    "main.css": "/static/css/main.a48847f4.css",
+    "main.js": "/static/js/main.80b1c43c.js",
     "static/media/kaasalainen.png": "/static/media/kaasalainen.ac1622bb55e757531558.png",
     "static/media/globe.png": "/static/media/globe.f1a748933d945f52c4f5.png",
     "static/media/cardgame.png": "/static/media/cardgame.4dd7a7d47d1daaacd757.png",
-    "static/media/tinkerit.png": "/static/media/tinkerit.262bb6b23f73ba237c00.png",
     "static/media/Miro2.webp": "/static/media/Miro2.cbdd64a1afa6c2fd3a8b.webp",
+    "static/media/tinkerit2.png": "/static/media/tinkerit2.330d7c8fd1e055348141.png",
     "static/media/tryingtocreate.png": "/static/media/tryingtocreate.1bfa0a23a879b06c3a15.png",
     "static/media/kyssari.png": "/static/media/kyssari.3c552493572fdd03f0e4.png",
     "static/media/flexliving.png": "/static/media/flexliving.9a80e942ab45197e42f9.png",
@@ -16,11 +16,11 @@
     "static/media/saa.png": "/static/media/saa.96aa661813b42785bff1.png",
     "static/media/movit.png": "/static/media/movit.7e1758171c4db5cb4466.png",
     "index.html": "/index.html",
-    "main.92d6c9e0.css.map": "/static/css/main.92d6c9e0.css.map",
-    "main.d8f5bd73.js.map": "/static/js/main.d8f5bd73.js.map"
+    "main.a48847f4.css.map": "/static/css/main.a48847f4.css.map",
+    "main.80b1c43c.js.map": "/static/js/main.80b1c43c.js.map"
   },
   "entrypoints": [
-    "static/css/main.92d6c9e0.css",
-    "static/js/main.d8f5bd73.js"
+    "static/css/main.a48847f4.css",
+    "static/js/main.80b1c43c.js"
   ]
 }
