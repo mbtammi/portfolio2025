@@ -9,9 +9,36 @@ import tinkerit from '../Images/tinkerit.png'
 import niko from '../Images/niko.png'
 import kyssari from '../Images/kyssari.png'
 import movit from '../Images/movit.png'
+import globe from '../Images/globe.png'
+import cardgame from '../Images/cardgame.png'
+import flexliving from '../Images/flexliving.png'
 import Modal from './Modal';
 
 const projects = [
+    {
+    name: 'WorldOfTheMaps',
+    description: 'Wordle for Maps (Private code)',
+    codeLink: '',
+    longDescription: 'A game inspired by Wordle but for maps. The user has to guess the country based on the map shown. The user gets hints based on how close the guess is to the actual country. The game is built with React and uses a custom API to fetch the maps and country data. Check it our at https://worldofthemaps.com',
+    image: globe,
+    stack: ['Vite', 'React', 'JavaScript', 'Globe Gl'],
+  },
+  {
+    name: 'PlayAnyCardGame',
+    description: 'Describe the rules of the game and Create it!',
+    codeLink: 'https://github.com/mbtammi/playanycardgame',
+    longDescription: 'A web app that uses OpenAI to create card games based on user input. The user can describe the rules of the game and the app will generate a playable version of the game. The app is built with React and uses OpenAI\'s GPT-3.5 to generate the game rules and logic. Newsletter at https://playanycardgame.com',
+    image: cardgame,
+    stack: ['Vite', 'Zustand', 'Framer', 'OpenAI'],
+  },
+  {
+    name: 'Flexliving',
+    description: 'Review apartments and Validate reviews!',
+    codeLink: 'https://github.com/mbtammi/flexliving',
+    longDescription: 'A web app that allows users to review apartments and validate the reviews of others. The app is built with Next.js and uses TailwindCSS for styling. It is deployed on Vercel.',
+    image: flexliving,
+    stack: ['Next.js', 'TailwindCSS', 'Vercel', 'NodeJS'],
+  },
   {
     name: 'Movit-Integration',
     description: 'Integration between a website and Movit (Private code)',
@@ -83,37 +110,43 @@ const workExperience = [
     company: 'Tietoevry Oy',
     period: '2024/06 -',
     title: 'Mobile Developer',
-    description: 'Developing a custom mobile application for a large dairy company'
+    description: 'Developing a custom mobile application for a large dairy company',
+    technologies: ['React Native', 'TypeScript', 'Azure', 'Git']
   },
   {
     company: 'Tinkerit Oy',
     period: '2023/07 -',
     title: 'Chief Executive Officer',
-    description: 'Building a company from the ground up with 3 other founders. Customer outreach. Integration development. Team managing'
+    description: 'Building a company from the ground up with 3 other founders. Customer outreach. Integration development. Team managing',
+    technologies: ['Business Development', 'Team Management', 'Integration APIs', 'Project Management']
   },
   {
     company: 'Woolman Oy',
     period: '2023/05 - 2024/05',
     title: 'Full-stack Developer',
-    description: 'Developing online-stores with Shopify for customers'
+    description: 'Developing online-stores with Shopify for customers',
+    technologies: ['Shopify', 'Liquid', 'JavaScript', 'CSS', 'HTML']
   },
   {
     company: 'Webso Oy',
     period: '2023/01 - 2023/05',
     title: 'Software Developer',
-    description: 'Developing it-products for customers. Working in an agile enviroment in a startup'
+    description: 'Developing it-products for customers. Working in an agile enviroment in a startup',
+    technologies: ['Agile', 'JavaScript', 'React', 'Node.js', 'Git']
   },
   {
     company: 'Nordea',
     period: '2022/05 - 2022/09',
     title: 'IT-Developer',
-    description: 'Performance testing services. Implementing features on the mobile application'
+    description: 'Performance testing services. Implementing features on the mobile application',
+    technologies: ['Performance Testing', 'Mobile Development', 'Java', 'Android', 'Testing Frameworks']
   },
   {
     company: 'Jyväskylä University',
     period: '2022 - 2023',
     title: 'Programming Course Advisor',
-    description: 'Helping students with course\'s weekly tasks. Creating and supervising the course exam'
+    description: 'Helping students with course\'s weekly tasks. Creating and supervising the course exam',
+    technologies: ['Python', 'Java', 'Teaching', 'Mentoring', 'Algorithm Design']
   }
 ];
 
@@ -121,7 +154,10 @@ const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
   const [showProjects, setShowProjects] = useState(true);
   const [technologies, setTechnologies] = useState([
-    ...new Set(projects.flatMap(project => project.stack))
+    ...new Set([
+      ...projects.flatMap(project => project.stack),
+      ...workExperience.flatMap(work => work.technologies)
+    ])
   ]);
 
   const openModal = (project) => {

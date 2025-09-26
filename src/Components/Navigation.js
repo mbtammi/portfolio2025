@@ -45,14 +45,14 @@ const Navigation = () => {
             Links
           </NavLink>
         </li>
-        <li>
+        {/* <li>
           <NavLink
             to="/codertype"
             className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
           >
             CoderType
           </NavLink>
-        </li>
+        </li> */}
       </ul>
 
       {/* Social media links on the right */}

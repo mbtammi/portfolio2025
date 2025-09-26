@@ -153,7 +153,7 @@ const Youtube = () => {
           <motion.div key="integrated-ad" className="pricing-box" whileHover={{ scale: 1.05 }}>
             <h3><FaAudioDescription /> Integrated Ad</h3>
             <p>60-90 second ad inside my videos & Pinned comment + Links</p>
-            <p className="price">$150-180</p>
+            <p className="price">$80-100</p>
             <button onClick={() => window.location.href = 'mailto:mirotammi44@gmail.com'}>
               Contact Me
             </button>
@@ -161,7 +161,7 @@ const Youtube = () => {
           <motion.div key="short-form" className="pricing-box" whileHover={{ scale: 1.05 }}>
             <h3><FaArrowUpRightDots /> Short-form Videos</h3>
             <p>15-30 second videos tailored to your brand.</p>
-            <p className="price">$50-80</p>
+            <p className="price">$40</p>
             <button onClick={() => window.location.href = 'mailto:mirotammi44@gmail.com'}>
               Contact Me
             </button>

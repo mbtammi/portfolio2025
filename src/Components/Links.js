@@ -1,6 +1,6 @@
 import React from 'react';
 import './Links.css';
-import { FaInstagram, FaYoutube, FaLinkedin, FaGithub, FaLink, FaCameraRetro } from 'react-icons/fa';
+import { FaInstagram, FaYoutube, FaLinkedin, FaGithub, FaLink, FaCameraRetro, FaGamepad } from 'react-icons/fa';
 import { motion } from 'framer-motion'; // Import Framer Motion
 
 const Links = () => {
@@ -27,6 +27,12 @@ const Links = () => {
       <h1 className="links-title">Links</h1>
       <ul className="links-list">
         {[
+          {
+            name: 'PlayAnyCardGame',
+            description: 'Play ANY card game...',
+            href: 'https://www.playanycardgame.com/',
+            icon: <FaGamepad />,
+          },
           {
             name: 'TryingToCreate',
             description: 'AI Tool for Creators',
