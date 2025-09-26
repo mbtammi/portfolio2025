@@ -5,7 +5,7 @@ import hyvy from '../Images/hyvy.png'
 import kaasalainen from '../Images/kaasalainen.png'
 import Once from '../Images/Once-2.png'
 import saa from '../Images/saa.png'
-import tinkerit from '../Images/tinkerit.png'
+import tinkerit from '../Images/tinkerit2.png'
 import niko from '../Images/niko.png'
 import kyssari from '../Images/kyssari.png'
 import movit from '../Images/movit.png'
@@ -97,6 +97,7 @@ const projects = [
     name: 'Eristyspalvelu Kaasalainen',
     description: 'A local insulation service business (Private code)',
     codeLink: '',
+    weblink: 'https://www.eristys.fi/',
     longDescription: 'Building a custom portfolio website for a customer in need. They wanted to simplify the process and proceeded to connect with my company and we delivered quickly and developed a scalable and a reliable website.',
     image: kaasalainen,
     stack: ['RestAPI', 'HTML', 'React', 'CSS'],
@@ -364,7 +365,7 @@ const Projects = () => {
                     src={project.image} 
                     alt={project.name} 
                     className="project-image"
-                    whileHover={{ scale: 1.1, opacity: 0.3 }}
+                    whileHover={{ scale: 1.1, opacity: 0.75 }}
                     transition={{ duration: 0.3 }}
                   />
                   <div className="project-title">
@@ -382,6 +383,7 @@ const Projects = () => {
                           View Code
                         </motion.a>
                       )}
+                      <br></br>
                       {project.weblink && (
                         <motion.a 
                           href={project.weblink} 

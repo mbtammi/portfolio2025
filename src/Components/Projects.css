@@ -70,7 +70,7 @@
 
 .project-title {
   font-size: 1.2em;
-  margin-bottom: 0.7em;
+  /* margin-bottom: 0.7em; */
   color: rgba(255, 214, 10, 0.9); /* Slightly transparent yellow */
   font-weight: 600;
   letter-spacing: 0.5px;
