@@ -390,7 +390,7 @@ const Projects = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5 }}
         >
-          Technology I have used:
+          What have I learned:
         </motion.h4>
         <motion.ul>
           {technologies.map((tech, idx) => (
