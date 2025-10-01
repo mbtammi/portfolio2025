@@ -61,7 +61,7 @@ const projects = [
   },
   {
     name: 'OnceADay',
-    description: 'A habit tracker for Android (In development)',
+    description: 'A habit tracker for Android',
     codeLink: '',
     weblink: 'https://play.google.com/store/apps/details?id=com.mirotrying.mironappsimple',
     longDescription: 'The simplest habit tracker since all the other ones are too complex. Wanted to see how you upload an app to the Play Store.',

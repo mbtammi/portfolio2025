@@ -76,6 +76,10 @@
   letter-spacing: 0.5px;
 }
 
+.project-title h2 {
+  margin-bottom: 0;
+}
+
 .project-description {
   font-size: 0.95em;
   color: rgba(221, 221, 221, 0.9);
