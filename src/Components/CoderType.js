@@ -334,6 +334,8 @@ const CoderType = () => {
     } else if (timeLeft === 0 && isGameActive) {
       endGame();
     }
+    // endGame identity changes would retrigger; timer + terminal state only need these deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [timeLeft, isGameActive, hasStartedTyping]);
 
   const startGame = (language) => {

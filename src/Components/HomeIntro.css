@@ -1,0 +1,48 @@
+.home-intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10050;
+  pointer-events: none;
+}
+
+.home-intro-panel {
+  position: absolute;
+  left: 0;
+  right: 0;
+  height: 50%;
+  z-index: 1;
+  background: #0b0b0b;
+  pointer-events: none;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+}
+
+.home-intro-panel--top {
+  top: 0;
+  transform-origin: 50% 0%;
+}
+
+.home-intro-panel--bottom {
+  bottom: 0;
+  transform-origin: 50% 100%;
+}
+
+.home-intro-lottie-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.home-intro-lottie {
+  width: min(360px, 72vw);
+  max-height: 45vh;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-intro {
+    display: none;
+  }
+}

@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import './Projects.css';
 import hyvy from '../Images/hyvy.png'
@@ -9,13 +9,22 @@ import tinkerit from '../Images/tinkerit2.png'
 import niko from '../Images/niko.png'
 import kyssari from '../Images/kyssari.png'
 import movit from '../Images/movit.png'
+import autoRanked from '../Images/auto-ranked-real.png'
 import globe from '../Images/globe.png'
-import cardgame from '../Images/cardgame.png'
 import flexliving from '../Images/flexliving.png'
-import tryingtocreate from '../Images/tryingtocreate.png'
 import Modal from './Modal';
 
 const projects = [
+  {
+    name: 'Auto-Ranked',
+    description: 'YouTube Optimizer — titles, ideas, and workflow in one place',
+    weblink: 'https://auto-ranked.com',
+    codeLink: '',
+    longDescription:
+      'Auto-Ranked is a YouTube optimizer: plan content, sharpen titles, and move faster from idea to publish. Built as my latest product — live at https://auto-ranked.com',
+    image: autoRanked,
+    stack: ['React', 'Product', 'YouTube', 'AI'],
+  },
     {
     name: 'WorldOfTheMaps',
     description: 'Wordle for Maps, a fun daily game (Private code)',
@@ -26,30 +35,12 @@ const projects = [
     stack: ['Vite', 'React', 'JavaScript', 'Globe Gl'],
   },
   {
-    name: 'PlayAnyCardGame',
-    description: 'Describe the rules of the game and Create it!',
-    weblink: 'https://playanycardgame.com',
-    codeLink: 'https://github.com/mbtammi/playanycardgame',
-    longDescription: 'A web app that uses OpenAI to create card games based on user input. The user can describe the rules of the game and the app will generate a playable version of the game. The app is built with React and uses OpenAI\'s GPT-3.5 to generate the game rules and logic. Newsletter at https://playanycardgame.com',
-    image: cardgame,
-    stack: ['Vite', 'Zustand', 'Framer', 'OpenAI'],
-  },
-  {
     name: 'Flexliving',
     description: 'Review apartments and Validate reviews!',
     codeLink: 'https://github.com/mbtammi/flexliving',
     longDescription: 'A web app that allows users to review apartments and validate the reviews of others. The app is built with Next.js and uses TailwindCSS for styling. It is deployed on Vercel.',
     image: flexliving,
     stack: ['Next.js', 'TailwindCSS', 'Vercel', 'NodeJS'],
-  },
-    {
-    name: 'TryingToCreate',
-    description: 'Generate new YouTube ideas With AI! (Private code)',
-    weblink: 'https://tryingtocreate.com',
-    codeLink: '',
-    longDescription: 'A web app where you can generate new YouTube video ideas with the help of AI. The user can input a topic and the app will generate a list of video ideas based on the topic. User can also generate the thumbnail mockup for the video. It is deployed on Vercel.',
-    image: tryingtocreate,
-    stack: ['Stripe', 'Node.js', 'CustomAPI', 'Firebase'],
   },
   {
     name: 'Movit-Integration',
@@ -123,14 +114,14 @@ const projects = [
 const workExperience = [
   {
     company: 'Tietoevry Oy',
-    period: '2024/06 -',
+    period: '2024/06 - 2025/04',
     title: 'Mobile Developer',
     description: 'Developing a custom mobile application for a large dairy company',
     technologies: ['React Native', 'TypeScript', 'Azure', 'Git']
   },
   {
     company: 'Tinkerit Oy',
-    period: '2023/07 -',
+    period: '2023/07 - 2025/04',
     title: 'Chief Executive Officer',
     description: 'Building a company from the ground up with 3 other founders. Customer outreach. Integration development. Team managing',
     technologies: ['Business Development', 'Team Management', 'Integration APIs', 'Project Management']
@@ -167,13 +158,16 @@ const workExperience = [
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState(null);
-  const [showProjects, setShowProjects] = useState(true);
-  const [technologies, setTechnologies] = useState([
-    ...new Set([
-      ...projects.flatMap(project => project.stack),
-      ...workExperience.flatMap(work => work.technologies)
-    ])
-  ]);
+  const [showProjects, setShowProjects] = useState(false);
+  const technologies = useMemo(
+    () => [
+      ...new Set([
+        ...projects.flatMap(project => project.stack),
+        ...workExperience.flatMap(work => work.technologies)
+      ])
+    ],
+    []
+  );
 
   const openModal = (project) => {
     setSelectedProject(project);
@@ -181,21 +175,6 @@ const Projects = () => {
 
   const closeModal = () => {
     setSelectedProject(null);
-  };
-
-  const toggleView = () => {
-    setShowProjects(!showProjects);
-  };
-
-  const shuffleTechnologies = () => {
-    setTechnologies(prevTech => {
-      const shuffled = [...prevTech];
-      for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-      }
-      return shuffled;
-    });
   };
 
   const containerVariants = {

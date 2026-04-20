@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import './Youtube.css';
-import { FaVideo, FaArrowUpRightDots, FaGift, FaAudioDescription } from 'react-icons/fa6';
+import { FaVideo, FaArrowUpRightDots, FaAudioDescription } from 'react-icons/fa6';
 import ContactUs from './ContactUs';
 import { motion } from 'framer-motion';
 
@@ -141,7 +141,7 @@ const Youtube = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 2, duration: 0.8 }}
         >
-          I love working with diverse brands to create meaningful partnerships. I reach around 14.000 - 20.000 views monthly, and 80% of my demographic consists of 18-34 year old males. If you're looking for authentic, engaging collaboration and want your brand to be seen, get in touch with email: <a className='bold-yellow'>mirotammi44@gmail.com</a>!
+          I love working with diverse brands to create meaningful partnerships. I reach around 14.000 - 20.000 views monthly, and 80% of my demographic consists of 18-34 year old males. If you're looking for authentic, engaging collaboration and want your brand to be seen, get in touch with email: <a className='bold-yellow' href="mailto:mirotammi44@gmail.com">mirotammi44@gmail.com</a>!
         </motion.p>
         <motion.div
           className="pricing-boxes"

@@ -1,95 +1,171 @@
-/* Container for the whole About page */
-.about-container {
-  color: #ffffff;
-  line-height: 1.6;
-  justify-content: center; /* Center horizontally */
-  align-items: center;    /* Center vertically */
-  flex-direction: column; /* Stack content vertically */
-  height: 100vh;
-  padding: 0;             /* Remove padding to avoid shifting */
-  text-align: left;       /* Align all text to the left */
-  max-width: 700px;
-  margin: 0 auto;
-  flex: 1;
-}
+/* About — text-first, scroll reveals, matches site aesthetic */
 
-.about-header {
-  text-align: left;      /* Left align the header text */
-  margin-bottom: 2em;
-  color: white;
-}
-
-.about-header h1 {
-  font-size: 2.5em;
-  margin-bottom: 0.5em;
-}
-
-.about-subtitle {
-  font-size: 1.2em;
-  color: #ffffff;
-}
-
-.about-bio,
-.about-skills {
-  margin-bottom: 3em;
-  font-size: 0.9em;
-}
-
-.about-bio h2,
-.about-skills h2 {
-  color: white;
-  padding: 2em 0;
+.about-root {
+  color: #e8eaef;
+  line-height: 1.7;
   text-align: left;
 }
 
-.about-bio p,
-.about-skills ul {
-  font-size: 1.1em;
-  color: #ffffff;
+.about-root--embed {
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 0 0 2rem;
 }
 
-.about-skills ul {
+.about-root--page {
+  min-height: min(100vh, 100dvh);
+  padding: 5.5rem 1.25rem 4rem;
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* Standalone hero */
+.about-page-hero {
+  position: relative;
+  margin-bottom: 2.5rem;
+  padding: 2rem 0 0.5rem;
+}
+
+.about-page-hero__bg {
+  position: absolute;
+  inset: -2rem -8vw 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 90% 70% at 50% 0%, rgba(80, 140, 255, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse 50% 40% at 80% 40%, rgba(180, 100, 255, 0.06) 0%, transparent 50%);
+  opacity: 0.9;
+}
+
+.about-page-hero__inner {
+  position: relative;
+  z-index: 1;
+}
+
+.about-page-hero__eyebrow {
+  font-size: 0.72rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #8eb8ff;
+  margin: 0 0 0.75rem;
+}
+
+.about-page-hero__title {
+  font-size: clamp(2.25rem, 5vw, 3rem);
+  font-weight: 700;
+  margin: 0 0 1rem;
+  line-height: 1.1;
+  background: linear-gradient(120deg, #ffffff 0%, #c8d4e8 50%, #9eb6d8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.about-page-hero__lede {
+  font-size: clamp(1.02rem, 2vw, 1.12rem);
+  color: rgba(230, 235, 245, 0.92);
+  margin: 0;
+  max-width: 40rem;
+}
+
+/* Long-form paragraphs (full page only) */
+.about-prose {
+  margin-bottom: 2.75rem;
+}
+
+.about-prose__p {
+  margin: 0 0 1.35rem;
+  font-size: 1.02rem;
+  color: rgba(220, 228, 242, 0.92);
+}
+
+.about-prose__p:last-child {
+  margin-bottom: 0;
+}
+
+.about-prose__p strong {
+  color: #f0f4fa;
+  font-weight: 600;
+}
+
+/* Skills — flowing list, no boxes */
+.about-skills-block {
+  padding: 0 0 1rem;
+}
+
+.about-root--embed .about-skills-block {
+  padding-top: 0.25rem;
+}
+
+.about-skills-block__head {
+  margin-bottom: 1.25rem;
+}
+
+.about-skills-block__title {
+  font-size: clamp(1.45rem, 3vw, 1.75rem);
+  font-weight: 700;
+  margin: 0;
+  color: #ededed;
+  letter-spacing: -0.02em;
+}
+
+.about-skills-list {
   list-style: none;
+  margin: 0;
   padding: 0;
 }
 
-.about-skills li {
-  margin: 0.5em 0;
+.about-skills-list__item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+  margin: 0 0 1.35rem;
+  font-size: 1.02rem;
+  color: rgba(220, 228, 242, 0.95);
 }
 
-.about-footer {
-  text-align: left;      /* Left align the footer text */
-  font-size: 0.9em;
-  color: #777;
-  margin-top: 3em;
+.about-skills-list__item:last-child {
+  margin-bottom: 0;
 }
 
-/* Styling for skill icons */
+.about-skills-list__text {
+  flex: 1;
+  min-width: 0;
+}
+
 .skill-icon {
-  margin-right: 0.8em;
-  color: #ffe57c; /* Soft gray for the icons */
-  font-size: 1.4em; /* Adjust the icon size */
-  transition: color 0.3s ease-in-out; /* Smooth color transition */
+  flex-shrink: 0;
+  margin-top: 0.2em;
+  color: #ffe57c;
+  font-size: 1.35rem;
+  transition: color 0.2s ease;
 }
 
-.skill-icon:hover {
-  color: #ffcc00; /* Highlight color on hover */
+.about-skills-list__item:hover .skill-icon {
+  color: #ffd60a;
 }
 
-.skill-text p{
-  font-size: 1em;
-  color: #f3f3f3; /* Match the text color to the icons */
-  display: inline-block;
+.skill-text {
+  font-weight: 600;
+  color: #f5f7fa;
 }
 
-/* Optional: Style for strong text within skill descriptions */
-.skill-text strong {
-  color: #ffcc00; /* Highlight technology names */
+.about-skills-list__text strong {
+  color: #e8edf5;
+  font-weight: 600;
 }
 
 @media (max-width: 680px) {
-  .about-container {
-    margin-inline: 5%;
-    font-size: 0.8em;
+  .about-root--page {
+    padding-top: 5rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .about-page-hero__bg {
+    inset: -1rem -4vw 0;
+  }
+
+  .about-prose__p,
+  .about-skills-list__item {
+    font-size: 0.98rem;
   }
 }

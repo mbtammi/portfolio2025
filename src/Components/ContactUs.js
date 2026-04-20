@@ -40,7 +40,7 @@ const ContactUs = () => {
         console.log("Viesti on lähetetty");
         setIsSubmitted(true);
         form.current.reset();
-        // setSuccessMessage(('SUCCESS'));
+        setSuccessMessage("Message sent — thanks!");
       }, (error) => {
         console.log(error.text);
       });
