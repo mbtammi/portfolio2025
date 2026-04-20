@@ -1,13 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.2d27adab.css",
-    "main.js": "/static/js/main.5a2a56b9.js",
+    "main.css": "/static/css/main.4ecbd285.css",
+    "main.js": "/static/js/main.b803cbc6.js",
     "static/media/kaasalainen.png": "/static/media/kaasalainen.ac1622bb55e757531558.png",
     "static/media/globe.png": "/static/media/globe.f1a748933d945f52c4f5.png",
-    "static/media/cardgame.png": "/static/media/cardgame.4dd7a7d47d1daaacd757.png",
     "static/media/Miro2.webp": "/static/media/Miro2.cbdd64a1afa6c2fd3a8b.webp",
     "static/media/tinkerit2.png": "/static/media/tinkerit2.330d7c8fd1e055348141.png",
-    "static/media/tryingtocreate.png": "/static/media/tryingtocreate.1bfa0a23a879b06c3a15.png",
     "static/media/kyssari.png": "/static/media/kyssari.3c552493572fdd03f0e4.png",
     "static/media/flexliving.png": "/static/media/flexliving.9a80e942ab45197e42f9.png",
     "static/media/niko.png": "/static/media/niko.32a50278d8128c4291d6.png",
@@ -15,12 +13,13 @@
     "static/media/hyvy.png": "/static/media/hyvy.4f2968809b73261af49e.png",
     "static/media/saa.png": "/static/media/saa.96aa661813b42785bff1.png",
     "static/media/movit.png": "/static/media/movit.7e1758171c4db5cb4466.png",
+    "static/media/auto-ranked-real.png": "/static/media/auto-ranked-real.8d2643b275ddd9b2eb75.png",
     "index.html": "/index.html",
-    "main.2d27adab.css.map": "/static/css/main.2d27adab.css.map",
-    "main.5a2a56b9.js.map": "/static/js/main.5a2a56b9.js.map"
+    "main.4ecbd285.css.map": "/static/css/main.4ecbd285.css.map",
+    "main.b803cbc6.js.map": "/static/js/main.b803cbc6.js.map"
   },
   "entrypoints": [
-    "static/css/main.2d27adab.css",
-    "static/js/main.5a2a56b9.js"
+    "static/css/main.4ecbd285.css",
+    "static/js/main.b803cbc6.js"
   ]
 }
