@@ -96,6 +96,35 @@ h1, h2, h3, h4, h5, h6 {
   border-radius: 5%;
 }
 
+.video-fallback {
+  width: min(720px, 92%);
+  margin: 0 auto;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  padding: 1.1rem 1.2rem;
+  text-align: center;
+  background: rgba(255, 255, 255, 0.03);
+}
+
+.video-fallback p {
+  margin: 0 0 0.85rem;
+  color: #d5d9e3;
+}
+
+.video-fallback-link {
+  display: inline-block;
+  text-decoration: none;
+  color: #0b0b0b;
+  background: #ffd60a;
+  border-radius: 999px;
+  padding: 0.5rem 0.95rem;
+  font-weight: 600;
+}
+
+.video-fallback-link:hover {
+  background: #e9c200;
+}
+
 /* Brand Section */
 .brand-section {
   margin-top: 60px;

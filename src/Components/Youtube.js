@@ -8,12 +8,29 @@ import { motion } from 'framer-motion';
 const Youtube = () => {
   const [videos, setVideos] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [videoNotice, setVideoNotice] = useState('');
 
   const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
   const channelId = process.env.REACT_APP_YOUTUBE_CHANNEL_ID;
 
   useEffect(() => {
+    const parseDuration = (duration) => {
+      const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
+      const matches = regex.exec(duration);
+      if (!matches) return 0;
+      const hours = parseInt(matches[1] || '0', 10);
+      const minutes = parseInt(matches[2] || '0', 10);
+      const seconds = parseInt(matches[3] || '0', 10);
+      return hours * 3600 + minutes * 60 + seconds;
+    };
+
     const fetchVideos = async () => {
+      if (!apiKey || !channelId) {
+        setVideoNotice('Video previews are temporarily unavailable. Open my YouTube channel below.');
+        setLoading(false);
+        return;
+      }
+
       try {
         const searchResponse = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
           params: {
@@ -29,7 +46,14 @@ const Youtube = () => {
           .filter((item) => item.id.videoId)
           .map((item) => item.id.videoId)
           .join(',');
-    
+
+        if (!videoIds) {
+          setVideoNotice('No recent videos found right now. Open my YouTube channel below.');
+          setVideos([]);
+          setLoading(false);
+          return;
+        }
+
         const videosResponse = await axios.get(`https://www.googleapis.com/youtube/v3/videos`, {
           params: {
             part: 'snippet,contentDetails',
@@ -46,21 +70,21 @@ const Youtube = () => {
         });
     
         setVideos(filteredVideos);
+        if (!filteredVideos.length) {
+          setVideoNotice('No long-form videos found at the moment. Open my YouTube channel below.');
+        } else {
+          setVideoNotice('');
+        }
         setLoading(false);
       } catch (error) {
-        console.error('Error fetching YouTube videos:', error);
+        if (axios.isAxiosError(error) && error.response?.status === 403) {
+          setVideoNotice('YouTube API access is currently restricted (403). Open my channel below.');
+        } else {
+          setVideoNotice('Could not load videos right now. Open my YouTube channel below.');
+        }
+        setVideos([]);
         setLoading(false);
       }
-    };
-    
-    // Helper function to convert ISO 8601 duration to seconds
-    const parseDuration = (duration) => {
-      const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
-      const matches = regex.exec(duration);
-      const hours = parseInt(matches[1] || '0', 10);
-      const minutes = parseInt(matches[2] || '0', 10);
-      const seconds = parseInt(matches[3] || '0', 10);
-      return hours * 3600 + minutes * 60 + seconds;
     };
 
     fetchVideos();
@@ -99,32 +123,46 @@ const Youtube = () => {
         animate={{ opacity: 1 }}
         transition={{ delay: 1, duration: 1 }}
       >
-        {videos.slice(0, 4).map((video, index) => (
-          <motion.div
-            key={video.id}
-            className={`video-card`}
-            initial={{ opacity: 0, y: 20, rotate: 0 }}  // Initial state (not tilted)
-            animate={{ opacity: 1, y: 0, rotate: index % 2 === 0 ? -5 : 5 }} // Tilt after animation starts
-            transition={{
-              delay: index * 0.2,  // Delay for sequential animations
-              duration: 2.0,       // Duration for the initial animation
-            }}
-          >
+        {videos.length > 0 ? (
+          videos.slice(0, 4).map((video, index) => (
+            <motion.div
+              key={video.id}
+              className={`video-card`}
+              initial={{ opacity: 0, y: 20, rotate: 0 }}  // Initial state (not tilted)
+              animate={{ opacity: 1, y: 0, rotate: index % 2 === 0 ? -5 : 5 }} // Tilt after animation starts
+              transition={{
+                delay: index * 0.2,  // Delay for sequential animations
+                duration: 2.0,       // Duration for the initial animation
+              }}
+            >
+              <a
+                href={`https://www.youtube.com/watch?v=${video.id}`}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <div className="video-thumbnail-container">
+                  <img
+                    src={video.snippet.thumbnails.high.url}
+                    alt={video.snippet.title}
+                    className="video-thumbnail"
+                  />
+                </div>
+              </a>
+            </motion.div>
+          ))
+        ) : (
+          <div className="video-fallback">
+            <p>{videoNotice || 'Videos are unavailable right now.'}</p>
             <a
-              href={`https://www.youtube.com/watch?v=${video.id}`}
+              className="video-fallback-link"
+              href="https://www.youtube.com/@mirotrying"
               target="_blank"
               rel="noopener noreferrer"
             >
-              <div className="video-thumbnail-container">
-                <img
-                  src={video.snippet.thumbnails.high.url}
-                  alt={video.snippet.title}
-                  className="video-thumbnail"
-                />
-              </div>
+              Open YouTube channel
             </a>
-          </motion.div>
-        ))}
+          </div>
+        )}
       </motion.div>
   
       {/* Brand Section */}
