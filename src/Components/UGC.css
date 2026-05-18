@@ -1,0 +1,568 @@
+/* UGC page — matches Home.css aesthetic (aurora + glass + yellow CTA) */
+
+.ugc-container {
+  background-color: #0b0b0b;
+  color: #e8eaef;
+  min-height: 100%;
+  font-family: 'Space Mono', monospace;
+}
+
+/* ---------- Hero ---------- */
+.ugc-hero {
+  position: relative;
+  min-height: min(100vh, 900px);
+  min-height: min(100svh, 1000px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5rem 1.5rem 3rem;
+  overflow: hidden;
+}
+
+.ugc-hero-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: radial-gradient(ellipse 80% 60% at 50% 40%, #121a2a 0%, #0a0a0c 55%, #050508 100%);
+}
+
+.ugc-hero-aurora {
+  position: absolute;
+  inset: -20%;
+  background:
+    radial-gradient(ellipse 50% 40% at 20% 30%, rgba(80, 140, 255, 0.25) 0%, transparent 55%),
+    radial-gradient(ellipse 45% 35% at 75% 25%, rgba(180, 100, 255, 0.12) 0%, transparent 50%),
+    radial-gradient(ellipse 60% 50% at 50% 80%, rgba(30, 200, 160, 0.08) 0%, transparent 45%);
+  animation: ugcAuroraShift 18s ease-in-out infinite alternate;
+}
+
+.ugc-hero-rays {
+  position: absolute;
+  inset: -50%;
+  background: conic-gradient(
+    from 0deg at 50% 50%,
+    transparent 0deg,
+    rgba(120, 180, 255, 0.04) 25deg,
+    transparent 55deg,
+    rgba(100, 160, 255, 0.06) 90deg,
+    transparent 120deg,
+    rgba(80, 140, 255, 0.03) 200deg,
+    transparent 260deg,
+    rgba(120, 200, 255, 0.05) 300deg,
+    transparent 360deg
+  );
+  animation: ugcRaysSpin 120s linear infinite;
+  opacity: 0.9;
+}
+
+.ugc-hero-vignette {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 70% 60% at 50% 45%, transparent 30%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+@keyframes ugcAuroraShift {
+  0% { transform: translate(0, 0) scale(1); opacity: 1; }
+  50% { transform: translate(3%, -2%) scale(1.03); opacity: 0.95; }
+  100% { transform: translate(-2%, 2%) scale(1.02); opacity: 1; }
+}
+
+@keyframes ugcRaysSpin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ugc-hero-aurora,
+  .ugc-hero-rays {
+    animation: none;
+  }
+}
+
+.ugc-hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 1fr minmax(240px, 340px);
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.ugc-hero-copy {
+  text-align: left;
+  color: #e8eaef;
+}
+
+.ugc-hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #8eb8ff;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(8px);
+  margin-bottom: 1.25rem;
+}
+
+.ugc-hero-badge-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #5cf0c4;
+  box-shadow: 0 0 10px rgba(92, 240, 196, 0.8);
+}
+
+.ugc-hero-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  margin: 0 0 1rem;
+  font-weight: 700;
+  background: linear-gradient(120deg, #ffffff 0%, #c8d4e8 45%, #a8b8d8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.15;
+}
+
+.ugc-hero-subtitle {
+  margin: 0;
+  font-size: clamp(0.95rem, 1.5vw, 1.05rem);
+  line-height: 1.65;
+  color: rgba(230, 235, 245, 0.88);
+  max-width: 36rem;
+}
+
+.ugc-hero-ctas {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.75rem;
+}
+
+/* Shared CTA buttons */
+.ugc-cta {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.ugc-cta-primary {
+  background: #FFD60A;
+  color: #0b0b0b;
+  border: none;
+}
+
+.ugc-cta-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 8px 24px rgba(255, 214, 10, 0.35);
+  background: #ffe14a;
+}
+
+.ugc-cta-secondary {
+  background: transparent;
+  color: #e8eaef;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+.ugc-cta-secondary:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.ugc-cta-icon {
+  width: 0.9em;
+  height: 0.9em;
+}
+
+.ugc-hero-visual {
+  justify-self: end;
+  width: 100%;
+  max-width: 340px;
+}
+
+.ugc-hero-image {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: min(52vh, 420px);
+  object-fit: cover;
+  object-position: center top;
+}
+
+/* ---------- Generic section ---------- */
+.ugc-section {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 4rem 1.5rem;
+}
+
+.ugc-section-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+}
+
+.ugc-eyebrow {
+  display: inline-block;
+  font-size: 0.72rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: #8eb8ff;
+  margin-bottom: 0.75rem;
+}
+
+.ugc-section-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  margin: 0 0 0.75rem;
+  background: linear-gradient(120deg, #ffffff 0%, #c8d4e8 45%, #a8b8d8 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.2;
+}
+
+.ugc-section-sub {
+  margin: 0 auto;
+  max-width: 42rem;
+  color: rgba(230, 235, 245, 0.78);
+  font-size: 1rem;
+  line-height: 1.6;
+}
+
+/* ---------- Stats ---------- */
+.ugc-stats-section {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+.ugc-stats {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1rem;
+}
+
+.ugc-stat-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem 1.25rem;
+  text-align: center;
+  backdrop-filter: blur(10px);
+  transition: transform 0.2s ease, border-color 0.2s ease;
+}
+
+.ugc-stat-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 214, 10, 0.4);
+}
+
+.ugc-stat-value {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: clamp(1.8rem, 3.5vw, 2.5rem);
+  color: #FFD60A;
+  line-height: 1;
+  margin-bottom: 0.5rem;
+}
+
+.ugc-stat-label {
+  font-size: 0.85rem;
+  color: rgba(230, 235, 245, 0.75);
+  line-height: 1.4;
+}
+
+.ugc-platform-row {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+  font-size: 1.4rem;
+}
+
+.ugc-platform-row a {
+  color: rgba(230, 235, 245, 0.55);
+  transition: color 0.2s ease, transform 0.2s ease;
+  display: inline-flex;
+}
+
+.ugc-platform-row a:hover {
+  color: #FFD60A;
+  transform: translateY(-2px);
+}
+
+/* ---------- 2x2 grid (content types) ---------- */
+.ugc-grid-2x2 {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1.25rem;
+}
+
+.ugc-card {
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.75rem;
+  backdrop-filter: blur(10px);
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+.ugc-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(255, 214, 10, 0.35);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+
+.ugc-card-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border-radius: 12px;
+  background: rgba(255, 214, 10, 0.12);
+  color: #FFD60A;
+  font-size: 1.2rem;
+  margin-bottom: 1rem;
+}
+
+.ugc-card-title {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.15rem;
+  margin: 0 0 0.5rem;
+  color: #f5f5f5;
+}
+
+.ugc-card-desc {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.55;
+  color: rgba(230, 235, 245, 0.78);
+}
+
+/* ---------- Chips (niches) ---------- */
+.ugc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.75rem;
+}
+
+.ugc-chip {
+  padding: 0.7rem 1.15rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  color: #e8eaef;
+  font-size: 0.92rem;
+  backdrop-filter: blur(8px);
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.ugc-chip:hover {
+  border-color: rgba(255, 214, 10, 0.4);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+/* ---------- Past collabs ---------- */
+.ugc-logo-strip {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 1rem;
+  align-items: center;
+}
+
+.ugc-logo-cell {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 12px;
+  min-height: 80px;
+}
+
+.ugc-logo-cell img {
+  max-width: 100%;
+  max-height: 48px;
+  object-fit: contain;
+  filter: grayscale(1) brightness(1.4);
+  opacity: 0.85;
+  transition: filter 0.2s ease, opacity 0.2s ease;
+}
+
+.ugc-logo-cell:hover img {
+  filter: none;
+  opacity: 1;
+}
+
+.ugc-placeholder {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border: 1px dashed rgba(255, 255, 255, 0.15);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.02);
+  color: rgba(230, 235, 245, 0.6);
+  font-size: 0.95rem;
+}
+
+.ugc-reel {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.ugc-reel-card {
+  position: relative;
+  width: 280px;
+  border-radius: 12px;
+  overflow: hidden;
+  text-decoration: none;
+  color: #fff;
+  transition: transform 0.3s ease;
+}
+
+.ugc-reel-card:hover {
+  transform: scale(1.04) rotate(1.5deg);
+}
+
+.ugc-reel-card img {
+  width: 100%;
+  height: 158px;
+  object-fit: cover;
+  display: block;
+}
+
+.ugc-reel-title {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 0.6rem 0.85rem;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* ---------- Why me ---------- */
+.ugc-why-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.25rem;
+}
+
+.ugc-why-card {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 16px;
+  padding: 1.5rem;
+  backdrop-filter: blur(8px);
+}
+
+.ugc-why-card h3 {
+  font-family: 'Archivo Black', sans-serif;
+  font-size: 1.05rem;
+  margin: 0 0 0.6rem;
+  color: #FFD60A;
+}
+
+.ugc-why-card p {
+  margin: 0;
+  font-size: 0.93rem;
+  line-height: 1.55;
+  color: rgba(230, 235, 245, 0.78);
+}
+
+/* ---------- CTA section ---------- */
+.ugc-cta-section {
+  padding-bottom: 2rem;
+}
+
+.ugc-cta-row {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.ugc-form-wrap {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+/* ---------- Footer ---------- */
+.ugc-footer {
+  text-align: center;
+  padding: 2rem 1.5rem 3rem;
+  color: #777;
+  font-size: 0.9rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 900px) {
+  .ugc-hero-inner {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+    text-align: center;
+  }
+
+  .ugc-hero-copy {
+    text-align: center;
+  }
+
+  .ugc-hero-subtitle {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .ugc-hero-ctas {
+    justify-content: center;
+  }
+
+  .ugc-hero-visual {
+    justify-self: center;
+    max-width: 280px;
+  }
+
+  .ugc-stats {
+    grid-template-columns: 1fr;
+  }
+
+  .ugc-grid-2x2 {
+    grid-template-columns: 1fr;
+  }
+
+  .ugc-why-list {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 680px) {
+  .ugc-hero {
+    padding-top: 4rem;
+    min-height: auto;
+  }
+
+  .ugc-section {
+    padding: 3rem 1.25rem;
+  }
+
+  .ugc-cta {
+    padding: 0.7rem 1.15rem;
+    font-size: 0.9rem;
+  }
+}

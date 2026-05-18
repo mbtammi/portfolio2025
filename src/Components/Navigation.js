@@ -39,6 +39,14 @@ const Navigation = () => {
         </li>
         <li>
           <NavLink
+            to="/ugc"
+            className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
+          >
+            UGC
+          </NavLink>
+        </li>
+        <li>
+          <NavLink
             to="/links"
             className={({ isActive }) => isActive ? "nav-item active" : "nav-item"}
           >

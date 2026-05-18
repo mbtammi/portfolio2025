@@ -9,6 +9,7 @@ import Youtube from './Components/Youtube';
 import Links from './Components/Links';
 import Projects from './Components/Projects';
 import CoderType from './Components/CoderType';
+import UGC from './Components/UGC';
 
 const GA_MEASUREMENT_ID = process.env.REACT_APP_GA_TRACKING_ID;
 
@@ -34,6 +35,7 @@ const App = () => {
         <Route path="/projects" element={<Projects />} />
         <Route path="/youtube" element={<Youtube />} />
         <Route path="/links" element={<Links />} />
+        <Route path="/ugc" element={<UGC />} />
         <Route path="/codertype" element={<CoderType />} />
       </Routes>
     </div>
