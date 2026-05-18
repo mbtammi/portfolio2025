@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.39d1b692.css",
-    "main.js": "/static/js/main.98af6091.js",
+    "main.css": "/static/css/main.21f391eb.css",
+    "main.js": "/static/js/main.31adb592.js",
     "static/media/kaasalainen.png": "/static/media/kaasalainen.ac1622bb55e757531558.png",
     "static/media/globe.png": "/static/media/globe.f1a748933d945f52c4f5.png",
     "static/media/Miro2.webp": "/static/media/Miro2.cbdd64a1afa6c2fd3a8b.webp",
@@ -11,15 +11,16 @@
     "static/media/niko.png": "/static/media/niko.32a50278d8128c4291d6.png",
     "static/media/Once-2.png": "/static/media/Once-2.b626501fe04c047df551.png",
     "static/media/hyvy.png": "/static/media/hyvy.4f2968809b73261af49e.png",
+    "static/media/oneplus.png": "/static/media/oneplus.aa586c5ed058b85c0239.png",
     "static/media/saa.png": "/static/media/saa.96aa661813b42785bff1.png",
     "static/media/movit.png": "/static/media/movit.7e1758171c4db5cb4466.png",
     "static/media/auto-ranked-real.png": "/static/media/auto-ranked-real.8d2643b275ddd9b2eb75.png",
     "index.html": "/index.html",
-    "main.39d1b692.css.map": "/static/css/main.39d1b692.css.map",
-    "main.98af6091.js.map": "/static/js/main.98af6091.js.map"
+    "main.21f391eb.css.map": "/static/css/main.21f391eb.css.map",
+    "main.31adb592.js.map": "/static/js/main.31adb592.js.map"
   },
   "entrypoints": [
-    "static/css/main.39d1b692.css",
-    "static/js/main.98af6091.js"
+    "static/css/main.21f391eb.css",
+    "static/js/main.31adb592.js"
   ]
 }
