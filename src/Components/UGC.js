@@ -20,7 +20,7 @@ import ContactUs from './ContactUs';
 
 const CALENDLY_URL = 'https://calendly.com/mirotammi44/30min';
 const FOLLOWERS = '5K+';
-const MONTHLY_VIEWS = '50K+';
+const MONTHLY_VIEWS = '180K+';
 
 const SOCIALS = {
   youtube: 'https://www.youtube.com/@mirotrying',
