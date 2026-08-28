@@ -2,6 +2,7 @@ import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import './About.css';
+import ScrollReveal from './bits/ScrollReveal';
 import {
   FaCode,
   FaReact,
@@ -136,9 +137,13 @@ const About = () => {
       {isPage && (
         <div className="about-prose">
           {storyBlocks.map((block, i) => (
-            <Reveal key={i} index={i} reduceMotion={reduceMotion} as={motion.p} className="about-prose__p">
-              {block}
-            </Reveal>
+            reduceMotion ? (
+              <p key={i} className="about-prose__p">{block}</p>
+            ) : (
+              <ScrollReveal key={i} containerClassName="about-prose__p" baseOpacity={0.12} blurStrength={5} baseRotation={2}>
+                {block}
+              </ScrollReveal>
+            )
           ))}
         </div>
       )}

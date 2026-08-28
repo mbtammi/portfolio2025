@@ -10,6 +10,7 @@ import Links from './Components/Links';
 import Projects from './Components/Projects';
 import CoderType from './Components/CoderType';
 import UGC from './Components/UGC';
+import ClickSpark from './Components/bits/ClickSpark';
 
 const GA_MEASUREMENT_ID = process.env.REACT_APP_GA_TRACKING_ID;
 
@@ -27,6 +28,7 @@ const App = () => {
   }, [location]);
 
   return (
+    <ClickSpark sparkColor="#8eb8ff" sparkSize={12} sparkRadius={22} sparkCount={9} duration={450}>
     <div className="app-container">
       <Navigation />
       <Routes>
@@ -39,6 +41,7 @@ const App = () => {
         <Route path="/codertype" element={<CoderType />} />
       </Routes>
     </div>
+    </ClickSpark>
   );
 };
 
