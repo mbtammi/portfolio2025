@@ -1,11 +1,16 @@
 {
-  "short_name": "Miro-portfolio",
-  "name": "Nice to have you here...",
+  "short_name": "Miro Tammi",
+  "name": "Miro Tammi — Software engineer & creator",
   "icons": [
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "48x48 32x32 16x16",
       "type": "image/x-icon"
+    },
+    {
+      "src": "favicon.svg",
+      "type": "image/svg+xml",
+      "sizes": "any"
     },
     {
       "src": "logo192.png",
@@ -20,6 +25,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#F2EDE3",
+  "background_color": "#F2EDE3"
 }
