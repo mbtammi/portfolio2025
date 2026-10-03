@@ -1,12 +1,11 @@
 {
   "files": {
-    "main.css": "/static/css/main.a94f475f.css",
-    "main.js": "/static/js/main.a97097bc.js",
+    "main.css": "/static/css/main.35787173.css",
+    "main.js": "/static/js/main.720dba35.js",
     "static/media/kaasalainen.png": "/static/media/kaasalainen.ac1622bb55e757531558.png",
     "static/media/globe.png": "/static/media/globe.f1a748933d945f52c4f5.png",
+    "static/media/tinkerit.png": "/static/media/tinkerit.262bb6b23f73ba237c00.png",
     "static/media/Miro2.webp": "/static/media/Miro2.cbdd64a1afa6c2fd3a8b.webp",
-    "static/media/tinkerit2.png": "/static/media/tinkerit2.330d7c8fd1e055348141.png",
-    "static/media/kyssari.png": "/static/media/kyssari.3c552493572fdd03f0e4.png",
     "static/media/flexliving.png": "/static/media/flexliving.9a80e942ab45197e42f9.png",
     "static/media/niko.png": "/static/media/niko.32a50278d8128c4291d6.png",
     "static/media/Once-2.png": "/static/media/Once-2.b626501fe04c047df551.png",
@@ -16,11 +15,11 @@
     "static/media/movit.png": "/static/media/movit.7e1758171c4db5cb4466.png",
     "static/media/auto-ranked-real.png": "/static/media/auto-ranked-real.8d2643b275ddd9b2eb75.png",
     "index.html": "/index.html",
-    "main.a94f475f.css.map": "/static/css/main.a94f475f.css.map",
-    "main.a97097bc.js.map": "/static/js/main.a97097bc.js.map"
+    "main.35787173.css.map": "/static/css/main.35787173.css.map",
+    "main.720dba35.js.map": "/static/js/main.720dba35.js.map"
   },
   "entrypoints": [
-    "static/css/main.a94f475f.css",
-    "static/js/main.a97097bc.js"
+    "static/css/main.35787173.css",
+    "static/js/main.720dba35.js"
   ]
 }
