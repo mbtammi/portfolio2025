@@ -1,223 +1,232 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
+import React, { useEffect, useRef, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
+import Arrow from './Arrow';
+import Footer from './Footer';
+import { BRANDS, STATS, YOUTUBE_URL } from '../data/site';
+import { fetchYouTube, formatCount, formatDuration } from '../lib/youtube';
 import './Youtube.css';
-import { FaVideo, FaArrowUpRightDots, FaAudioDescription } from 'react-icons/fa6';
-import ContactUs from './ContactUs';
-import { motion } from 'framer-motion';
 
-const Youtube = () => {
-  const [videos, setVideos] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [videoNotice, setVideoNotice] = useState('');
+const FALLBACK_SUBSCRIBERS = STATS.find((s) => s.label === 'YouTube subscribers')?.value || '3.6k';
+const GRID_COUNT = 6;
 
-  const apiKey = process.env.REACT_APP_YOUTUBE_API_KEY;
-  const channelId = process.env.REACT_APP_YOUTUBE_CHANNEL_ID;
+const watchUrl = (id) => `https://www.youtube.com/watch?v=${id}`;
+const dateFormat = new Intl.DateTimeFormat('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+const formatDate = (iso) => {
+  const d = new Date(iso);
+  return Number.isNaN(d.getTime()) ? '' : dateFormat.format(d);
+};
+
+let warned = false;
+const warnOnce = (reason) => {
+  if (warned) return;
+  warned = true;
+  // eslint-disable-next-line no-console
+  console.warn('[YouTube] showing fallback:', reason);
+};
+
+const PlayIcon = () => (
+  <svg width="32" height="32" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+    <path d="M8 5l12 7-12 7z" />
+  </svg>
+);
+
+const FeaturedVideo = ({ video, status }) => {
+  const [playing, setPlaying] = useState(false);
+  const frameRef = useRef(null);
 
   useEffect(() => {
-    const parseDuration = (duration) => {
-      const regex = /PT(?:(\d+)H)?(?:(\d+)M)?(?:(\d+)S)?/;
-      const matches = regex.exec(duration);
-      if (!matches) return 0;
-      const hours = parseInt(matches[1] || '0', 10);
-      const minutes = parseInt(matches[2] || '0', 10);
-      const seconds = parseInt(matches[3] || '0', 10);
-      return hours * 3600 + minutes * 60 + seconds;
-    };
+    if (playing) frameRef.current?.focus();
+  }, [playing]);
 
-    const fetchVideos = async () => {
-      if (!apiKey || !channelId) {
-        setVideoNotice('Video previews are temporarily unavailable. Open my YouTube channel below.');
-        setLoading(false);
-        return;
-      }
+  if (status === 'loading') {
+    return <div className="youtube-featured youtube-skeleton" aria-hidden="true" />;
+  }
 
-      try {
-        const searchResponse = await axios.get(`https://www.googleapis.com/youtube/v3/search`, {
-          params: {
-            part: 'id',
-            channelId: channelId,
-            maxResults: 20,
-            order: 'date',
-            key: apiKey,
-          },
-        });
-    
-        const videoIds = searchResponse.data.items
-          .filter((item) => item.id.videoId)
-          .map((item) => item.id.videoId)
-          .join(',');
+  if (!video) {
+    return (
+      <a className="youtube-featured youtube-featured--empty" href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
+        <span className="youtube-play"><PlayIcon /></span>
+        <span className="youtube-featured__label">Watch on YouTube</span>
+      </a>
+    );
+  }
 
-        if (!videoIds) {
-          setVideoNotice('No recent videos found right now. Open my YouTube channel below.');
-          setVideos([]);
-          setLoading(false);
-          return;
-        }
-
-        const videosResponse = await axios.get(`https://www.googleapis.com/youtube/v3/videos`, {
-          params: {
-            part: 'snippet,contentDetails',
-            id: videoIds,
-            key: apiKey,
-          },
-        });
-    
-        // Filter videos to only include those over 1 minute long
-        const filteredVideos = videosResponse.data.items.filter((video) => {
-          const duration = video.contentDetails.duration; // ISO 8601 duration string (e.g., PT1M30S)
-          const durationInSeconds = parseDuration(duration); // Convert duration to seconds
-          return durationInSeconds > 60; // Only include videos longer than 1 minute
-        });
-    
-        setVideos(filteredVideos);
-        if (!filteredVideos.length) {
-          setVideoNotice('No long-form videos found at the moment. Open my YouTube channel below.');
-        } else {
-          setVideoNotice('');
-        }
-        setLoading(false);
-      } catch (error) {
-        if (axios.isAxiosError(error) && error.response?.status === 403) {
-          setVideoNotice('YouTube API access is currently restricted (403). Open my channel below.');
-        } else {
-          setVideoNotice('Could not load videos right now. Open my YouTube channel below.');
-        }
-        setVideos([]);
-        setLoading(false);
-      }
-    };
-
-    fetchVideos();
-  }, [apiKey, channelId]);
-
-  if (loading) {
-    return <div className="loading">Loading...</div>;
+  if (playing) {
+    return (
+      <div className="youtube-featured">
+        <iframe
+          ref={frameRef}
+          className="youtube-featured__frame"
+          src={`https://www.youtube-nocookie.com/embed/${video.id}?autoplay=1&rel=0`}
+          title={video.title}
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          referrerPolicy="strict-origin-when-cross-origin"
+          allowFullScreen
+        />
+      </div>
+    );
   }
 
   return (
-    <div className="youtube-container">
-      {/* Big Header */}
-      <header className="header-section">
-        <motion.h2 
-          className="channel-name"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1 }}
-        >
-          mirotrying
-        </motion.h2>
-        <motion.p 
-          className="channel-description"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.5, duration: 1 }}
-        >
-          Welcome to my channel! I reach thousands of viewers every month, exploring tech, productivity, and life as a software engineer. Check out my latest videos here!
-        </motion.p>
-      </header>
-  
-      {/* Video Section */}
-      <motion.div 
-        className="video-list"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1, duration: 1 }}
-      >
-        {videos.length > 0 ? (
-          videos.slice(0, 4).map((video, index) => (
-            <motion.div
-              key={video.id}
-              className={`video-card`}
-              initial={{ opacity: 0, y: 20, rotate: 0 }}  // Initial state (not tilted)
-              animate={{ opacity: 1, y: 0, rotate: index % 2 === 0 ? -5 : 5 }} // Tilt after animation starts
-              transition={{
-                delay: index * 0.2,  // Delay for sequential animations
-                duration: 2.0,       // Duration for the initial animation
-              }}
-            >
-              <a
-                href={`https://www.youtube.com/watch?v=${video.id}`}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <div className="video-thumbnail-container">
-                  <img
-                    src={video.snippet.thumbnails.high.url}
-                    alt={video.snippet.title}
-                    className="video-thumbnail"
-                  />
-                </div>
-              </a>
-            </motion.div>
-          ))
-        ) : (
-          <div className="video-fallback">
-            <p>{videoNotice || 'Videos are unavailable right now.'}</p>
-            <a
-              className="video-fallback-link"
-              href="https://www.youtube.com/@mirotrying"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Open YouTube channel
+    <button type="button" className="youtube-featured youtube-featured--facade" onClick={() => setPlaying(true)}
+      aria-label={`Play video: ${video.title}`}>
+      <img className="youtube-featured__thumb" src={video.thumbnail} alt="" />
+      <span className="youtube-play"><PlayIcon /></span>
+      <span className="youtube-featured__caption">
+        <span className="youtube-featured__kicker">Latest video · {formatDuration(video.durationSeconds)}</span>
+        <span className="youtube-featured__title">{video.title}</span>
+      </span>
+    </button>
+  );
+};
+
+const VideoCard = ({ video }) => (
+  <a className="youtube-card" href={watchUrl(video.id)} target="_blank" rel="noopener noreferrer">
+    <div className="youtube-card__thumb">
+      {video.thumbnail && <img src={video.thumbnail} alt="" loading="lazy" />}
+      <span className="youtube-card__duration">{formatDuration(video.durationSeconds)}</span>
+    </div>
+    <h3 className="youtube-card__title">{video.title}</h3>
+    {video.publishedAt && (
+      <time className="youtube-card__date" dateTime={video.publishedAt}>{formatDate(video.publishedAt)}</time>
+    )}
+  </a>
+);
+
+const Youtube = () => {
+  const reduceMotion = useReducedMotion();
+  const [status, setStatus] = useState('loading');
+  const [data, setData] = useState(null);
+
+  useEffect(() => {
+    const controller = new AbortController();
+    fetchYouTube({ signal: controller.signal })
+      .then((result) => {
+        setData(result);
+        setStatus(result.videos.length ? 'ready' : 'empty');
+        if (!result.videos.length) warnOnce('no long-form videos returned');
+      })
+      .catch((err) => {
+        if (err.name === 'AbortError') return;
+        warnOnce(err.message);
+        setStatus('error');
+      });
+    return () => controller.abort();
+  }, []);
+
+  const videos = data?.videos || [];
+  const gridVideos = videos.slice(1, GRID_COUNT + 1);
+  const subscribers = data?.channel?.subscribers ? formatCount(data.channel.subscribers) : FALLBACK_SUBSCRIBERS;
+  // Lifetime channel views, live from the API only; hidden when the API is unavailable.
+  const totalViews = data?.channel?.views ? formatCount(data.channel.views) : null;
+
+  const rise = (delay = 0) =>
+    reduceMotion
+      ? {}
+      : {
+          initial: { opacity: 0, y: 24 },
+          animate: { opacity: 1, y: 0 },
+          transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
+        };
+
+  return (
+    <div className="youtube-page">
+      <section className="container youtube-hero">
+        <motion.div className="youtube-hero__copy" {...rise()}>
+          <p className="eyebrow">YouTube · @mirotrying</p>
+          <h1 className="youtube-hero__title">
+            miro<em className="accent">trying</em>
+          </h1>
+          <p className="lede">
+            Tech, productivity and life as a software engineer. Scripted, filmed and edited by me, usually with the
+            cat in frame.
+          </p>
+          <dl className="youtube-hero__stats">
+            <div>
+              <dt className="stat-label">subscribers</dt>
+              <dd className="youtube-hero__stat">{subscribers}</dd>
+            </div>
+            {totalViews && (
+              <div>
+                <dt className="stat-label">total views</dt>
+                <dd className="youtube-hero__stat accent">{totalViews}</dd>
+              </div>
+            )}
+          </dl>
+          <div className="youtube-hero__actions">
+            <a className="btn btn--primary" href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
+              Subscribe on YouTube
             </a>
+            <Link className="btn btn--secondary" to="/ugc">Brand deals</Link>
           </div>
-        )}
-      </motion.div>
-  
-      {/* Brand Section */}
-      <section className="brand-section">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-        >
-          Let's Collaborate!
-        </motion.h2>
-        <motion.p
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2, duration: 0.8 }}
-        >
-          I love working with diverse brands to create meaningful partnerships. I reach around 14.000 - 20.000 views monthly, and 80% of my demographic consists of 18-34 year old males. If you're looking for authentic, engaging collaboration and want your brand to be seen, get in touch with email: <a className='bold-yellow' href="mailto:mirotammi44@gmail.com">mirotammi44@gmail.com</a>!
-        </motion.p>
-        <motion.div
-          className="pricing-boxes"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2.5, duration: 1 }}
-        >
-          {/* Pricing Boxes */}
-          <motion.div key="integrated-ad" className="pricing-box" whileHover={{ scale: 1.05 }}>
-            <h3><FaAudioDescription /> Integrated Ad</h3>
-            <p>60-90 second ad inside my videos & Pinned comment + Links</p>
-            <p className="price">$100</p>
-            <button onClick={() => window.location.href = 'mailto:mirotammi44@gmail.com'}>
-              Contact Me
-            </button>
-          </motion.div>
-          <motion.div key="short-form" className="pricing-box" whileHover={{ scale: 1.05 }}>
-            <h3><FaArrowUpRightDots /> Short-form Videos</h3>
-            <p>15-30 second videos tailored to your brand.</p>
-            <p className="price">$40</p>
-            <button onClick={() => window.location.href = 'mailto:mirotammi44@gmail.com'}>
-              Contact Me
-            </button>
-          </motion.div>
-          <motion.div key="custom-sponsorship" className="pricing-box" whileHover={{ scale: 1.05 }}>
-            <h3><FaVideo /> Custom Sponsorship</h3>
-            <p>Tailored campaigns with creative flexibility.</p>
-            <p className="price">???</p>
-            <button onClick={() => window.location.href = 'mailto:mirotammi44@gmail.com'}>
-              Contact Me
-            </button>
-          </motion.div>
+        </motion.div>
+        <motion.div className="youtube-hero__media" {...rise(0.15)}>
+          <FeaturedVideo video={videos[0]} status={status} />
         </motion.div>
       </section>
 
-      {/* Contact Us Section */}
-      <ContactUs />
-    </div>  
+      <section className="container youtube-latest" aria-labelledby="youtube-latest-title">
+        <div className="youtube-latest__head">
+          <h2 id="youtube-latest-title" className="h2">
+            Latest <em>videos</em>
+          </h2>
+          <a className="text-link" href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
+            Open channel <Arrow direction="out" />
+          </a>
+        </div>
+
+        {status === 'loading' && (
+          <div className="youtube-grid" aria-busy="true" aria-label="Loading videos">
+            {Array.from({ length: GRID_COUNT }, (_, i) => (
+              <div key={i} className="youtube-card youtube-card--skeleton" aria-hidden="true">
+                <div className="youtube-card__thumb youtube-skeleton" />
+                <div className="youtube-skeleton youtube-skeleton__line" />
+                <div className="youtube-skeleton youtube-skeleton__line youtube-skeleton__line--short" />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {status === 'ready' && gridVideos.length > 0 && (
+          <div className="youtube-grid">
+            {gridVideos.map((video) => (
+              <VideoCard key={video.id} video={video} />
+            ))}
+          </div>
+        )}
+
+        {(status === 'error' || status === 'empty' || (status === 'ready' && gridVideos.length === 0)) && (
+          <div className="youtube-fallback">
+            <div>
+              <h3 className="h3">Watch the latest videos on YouTube</h3>
+              <p className="body">New uploads land on the channel first. Come say hi in the comments.</p>
+            </div>
+            <a className="btn btn--dark" href={YOUTUBE_URL} target="_blank" rel="noopener noreferrer">
+              Open channel <Arrow direction="out" />
+            </a>
+          </div>
+        )}
+      </section>
+
+      <section className="container" aria-label="Brands I've worked with">
+        <div className="youtube-brands">
+          <p className="eyebrow youtube-brands__label">Brands I&apos;ve worked with</p>
+          <ul className="youtube-brands__logos">
+            {BRANDS.map((brand) => (
+              <li key={brand.name}>
+                <img src={brand.logo} alt={brand.name} />
+              </li>
+            ))}
+          </ul>
+          <Link className="text-link youtube-brands__cta" to="/ugc">
+            Work with me <Arrow />
+          </Link>
+        </div>
+      </section>
+
+      <Footer />
+    </div>
   );
 };
 

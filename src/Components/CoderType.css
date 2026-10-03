@@ -29,7 +29,7 @@
   margin-bottom: 2rem;
 }
 
-button {
+.codertype-container button {
   background-color: #4a9e4a;
   color: #fff;
   border: none;
@@ -40,7 +40,7 @@ button {
   transition: all 0.3s ease;
 }
 
-button:hover {
+.codertype-container button:hover {
   /* background-color: #3d833d; */
   transform: scale(1.05);
 }
@@ -148,7 +148,7 @@ button:hover {
   margin-bottom: 2rem;
 }
 
-.stats {
+.codertype-container .stats {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1.5rem;

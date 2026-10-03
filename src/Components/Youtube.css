@@ -1,280 +1,218 @@
-body {
-  font-family: 'Space Mono', monospace; /* Applied to general body text */
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+/* YouTube page — Paper design */
+
+.youtube-page { overflow-x: clip; }
+
+/* Hero */
+.youtube-hero {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px;
+  row-gap: 48px;
+  align-items: center;
+  padding-block: clamp(48px, 5.5vw, 80px) clamp(64px, 6.5vw, 96px);
+}
+.youtube-hero__copy { grid-column: span 5; display: flex; flex-direction: column; gap: 28px; min-width: 0; }
+.youtube-hero__media { grid-column: 7 / span 6; min-width: 0; }
+
+.youtube-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(52px, 7.8vw, 112px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  overflow-wrap: break-word;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: 'Archivo Black', sans-serif; /* Applied to all headings */
-}
-
-/* Main Container */
-.youtube-container {
-  padding: 20px;
-  font-family: 'Space Mono', monospace; /* Redundant but for clarity */
-  background-color: rgb(18, 18, 18);
-  color: white; /* Default text color */
-}
-
-/* Big Header Section */
-.header-section {
-  text-align: center;
-  margin-bottom: 40px;
-}
-
-.channel-name {
-  font-size: 3em;
-  color: white; /* White text */
-  font-family: 'Archivo Black', sans-serif; /* Ensures font consistency */
-}
-
-.channel-description {
-  font-size: 1.2em;
-  color: #ccc; /* Slightly lighter for description */
-  font-family: 'Space Mono', monospace; /* Body font */
-  padding-inline: 20%;
-}
-
-/* Video Section */
-.video-list {
-  display: flex;
-  gap: 20px;
-  overflow-x: auto;
-  justify-content: center;
-  padding: 20px 0;
-  background-color: rgb(18, 18, 18);
-}
-
-.video-card {
-  flex-shrink: 0;
-  width: 300px;
-  transform: rotate(0deg);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.video-card:hover {
-  transform: scale(1.05) rotate(3deg); /* Slight scaling and rotation */
-  /* box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3); */
-}
-
-.tilt-left {
-  transform: rotate(-5deg);
-  transition-delay: 2s; /* Delay the tilt effect */
-}
-
-.tilt-right {
-  transform: rotate(5deg);
-  transition-delay: 2s; /* Delay the tilt effect */
-}
-.video-list {
+.youtube-hero__stats {
   display: flex;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 16px 40px;
+  margin: 0;
+  padding-top: 20px;
+  border-top: 1px solid var(--ink);
 }
+.youtube-hero__stats > div { display: flex; flex-direction: column-reverse; gap: 4px; }
+.youtube-hero__stats dd { margin: 0; }
+.youtube-hero__stat { font-family: var(--font-display); font-size: 44px; line-height: 1; }
 
-.video-card {
+.youtube-hero__actions { display: flex; flex-wrap: wrap; gap: 12px; }
+
+/* Featured video */
+.youtube-featured {
   position: relative;
-  width: 300px;
-  height: 169px; /* Ensures the container maintains the correct ratio */
-  transform: rotate(0deg);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.video-thumbnail-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-}
-
-.video-thumbnail {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures the image fills the container without distortion */
-  border-radius: 5%;
-}
-
-.video-fallback {
-  width: min(720px, 92%);
-  margin: 0 auto;
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 14px;
-  padding: 1.1rem 1.2rem;
-  text-align: center;
-  background: rgba(255, 255, 255, 0.03);
-}
-
-.video-fallback p {
-  margin: 0 0 0.85rem;
-  color: #d5d9e3;
-}
-
-.video-fallback-link {
-  display: inline-block;
-  text-decoration: none;
-  color: #0b0b0b;
-  background: #ffd60a;
-  border-radius: 999px;
-  padding: 0.5rem 0.95rem;
-  font-weight: 600;
-}
-
-.video-fallback-link:hover {
-  background: #e9c200;
-}
-
-/* Brand Section */
-.brand-section {
-  margin-top: 60px;
-  text-align: center;
-}
-
-.brand-section h2 {
-  font-size: 2.5em;
-  color: white; /* White text */
-  font-family: 'Archivo Black', sans-serif; /* Heading font */
-}
-
-.brand-section p {
-  font-size: 1.2em;
-  color: #ccc; /* Slightly lighter for description */
-  margin: 20px 0;
-  font-family: 'Space Mono', monospace; /* Body font */
-  padding-inline: 20%;
-  padding-bottom: 5%;
-}
-
-/* Pricing Boxes */
-.pricing-boxes {
   display: flex;
-  gap: 5%;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
-  margin-top: 20px;
-  padding-bottom: 5%;
+  gap: 20px;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: clamp(16px, 1.7vw, 24px);
+  overflow: hidden;
+  background: var(--ink);
+  color: var(--on-ink-muted);
+  border: 0;
+  padding: 0;
+  text-decoration: none;
+  font: inherit;
 }
-
-.pricing-box:hover {
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
+.youtube-featured--facade { cursor: pointer; }
+.youtube-featured__thumb { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.youtube-featured--facade::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: rgba(26, 23, 20, 0.28);
+  transition: background-color 0.3s var(--ease);
 }
+.youtube-featured--facade:hover::after { background: rgba(26, 23, 20, 0.14); }
+.youtube-featured__frame { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; }
 
-.pricing-box {
-  border: 1px solid #555;
-  padding: 20px;
-  width: 18%;
-  border-radius: 10px;
-  background-color: #222; /* Dark background for contrast */
-}
-
-.pricing-box h3 {
-  font-size: 1.5em;
-  /* color: #FFD60A;  */
-  font-family: 'Archivo Black', sans-serif; /* Heading font */
+.youtube-play {
+  position: relative;
+  z-index: 1;
+  width: clamp(64px, 6.1vw, 88px);
+  height: clamp(64px, 6.1vw, 88px);
+  border-radius: 999px;
+  background: var(--tomato);
+  color: #fff;
   display: flex;
   align-items: center;
-  gap: 10px;
   justify-content: center;
+  transition: transform 0.3s var(--ease);
 }
+.youtube-featured:hover .youtube-play { transform: scale(1.06); }
+.youtube-featured--empty:hover { color: var(--paper); }
 
-.pricing-box h3 svg {
-  font-size: 1.1em; /* Adjust the icon size */
-  color: #FFD60A; /* Updated icon color */
-}
+.youtube-featured__label,
+.youtube-featured__kicker { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
 
-.pricing-box p {
-  margin-top: 10px;
-  font-size: 1em;
-  color: #ccc; /* Slightly lighter for description */
-  font-family: 'Space Mono', monospace; /* Body font */
-}
-
-.pricing-box button {
-  padding: 15px 30px; /* Increased padding for a bigger button */
-  background-color: #FFD60A; /* Updated button background color */
-  color: #222;
-  border: none;
-  border-radius: 8px; /* Slightly rounded corners */
-  cursor: pointer;
-  font-family: 'Space Mono', monospace; /* Button font */
-  font-size: 1.1em; /* Increased font size for better readability */
-  transition: background-color 0.3s ease; /* Smooth background change */
-}
-
-.pricing-box button:hover {
-  background-color: #c9a435; /* Button hover color */
-}
-
-.price {
-  font-size: 1.2em;
-  color: #FFD60A; /* Updated price color */
-  margin-top: 10px;
-  font-weight: bold; /* Emphasizes the price */
-  padding-bottom: 0 !important;
-}
-
-.loading {
-  color: white;
-  justify-content: center;
-  padding: 20px;
-  /* align-items: center; */
+.youtube-featured__caption {
+  position: absolute;
+  z-index: 1;
+  left: 0;
+  right: 0;
+  bottom: 0;
   display: flex;
-  background-color: #0b0b0b;
+  flex-direction: column;
+  gap: 6px;
+  padding: clamp(14px, 2vw, 24px);
+  text-align: left;
+  color: var(--paper);
+  background: rgba(26, 23, 20, 0.82);
+}
+.youtube-featured__kicker { color: var(--on-ink-muted); font-size: 12px; }
+.youtube-featured__title {
+  font-family: var(--font-display);
+  font-size: clamp(18px, 1.7vw, 24px);
+  line-height: 1.15;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.bold-yellow {
-  color: #FFD60A;
-  font-style: italic;
+/* Skeletons */
+.youtube-skeleton { background: var(--oat); animation: youtube-pulse 1.6s ease-in-out infinite; }
+.youtube-skeleton__line { height: 22px; border-radius: 6px; }
+.youtube-skeleton__line--short { width: 40%; height: 14px; }
+@keyframes youtube-pulse { 50% { opacity: 0.55; } }
+
+/* Latest videos */
+.youtube-latest { display: flex; flex-direction: column; gap: 40px; padding-bottom: clamp(72px, 8.3vw, 120px); }
+.youtube-latest__head {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 16px;
+  border-top: 1px solid var(--ink);
+  padding-top: 32px;
 }
 
-/* Media Query for screen sizes under 800px */
-@media (max-width: 800px) {
-  .pricing-boxes {
-    flex-direction: column; /* Stack the pricing boxes vertically */
-    align-items: center; /* Center the pricing boxes */
-  }
+.youtube-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 48px 24px; }
 
-  .pricing-box {
-    width: 80%; /* Make each box take up 80% of the container's width */
-    margin-bottom: 20px; /* Add spacing between boxes */
-  }
+.youtube-card { display: flex; flex-direction: column; gap: 12px; text-decoration: none; min-width: 0; }
+.youtube-card__thumb {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  border-radius: 18px;
+  overflow: hidden;
+  background: var(--oat);
+}
+.youtube-card:nth-child(even) .youtube-card__thumb { background: var(--blush); }
+.youtube-card__thumb img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s var(--ease); }
+.youtube-card:hover .youtube-card__thumb img { transform: scale(1.03); }
+.youtube-card__duration {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  background: var(--ink);
+  color: var(--paper);
+}
+.youtube-card__title {
+  font-family: var(--font-display);
+  font-size: clamp(20px, 1.7vw, 24px);
+  line-height: 1.15;
+  overflow-wrap: anywhere;
+}
+.youtube-card__date { font-size: 14px; color: var(--stone); }
 
-  .channel-description {
-    padding-inline: 5% !important;
-  }
+/* Fallback */
+.youtube-fallback {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: clamp(24px, 3.3vw, 48px);
+  border-radius: 24px;
+  background: var(--oat);
+}
+.youtube-fallback > div { display: flex; flex-direction: column; gap: 8px; max-width: 560px; }
+
+/* Brands */
+.youtube-brands {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 32px 56px;
+  margin-bottom: clamp(72px, 8.3vw, 120px);
+  padding-block: 40px;
+  border-block: 1px solid var(--ink);
+}
+.youtube-brands__label { width: 220px; }
+.youtube-brands__logos { display: flex; flex-wrap: wrap; align-items: center; gap: 24px 56px; margin: 0; padding: 0; list-style: none; }
+.youtube-brands__logos img { height: 48px; width: 160px; object-fit: contain; mix-blend-mode: multiply; }
+.youtube-brands__cta { margin-left: auto; font-weight: 600; }
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .youtube-hero__copy,
+  .youtube-hero__media { grid-column: 1 / -1; }
+  .youtube-hero__copy { max-width: 640px; }
+  .youtube-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
-/* Smooth hover effects */
-.pricing-box:hover {
-  box-shadow: 0 10px 20px rgba(255, 255, 255, 0.3);
-  transition: box-shadow 0.3s ease;
+/* Phone */
+@media (max-width: 640px) {
+  .youtube-hero { row-gap: 40px; }
+  .youtube-hero__copy { gap: 22px; }
+  .youtube-hero__stat { font-size: 38px; }
+  .youtube-hero__actions .btn { flex: 1 1 auto; }
+  .youtube-latest { gap: 28px; }
+  .youtube-grid { grid-template-columns: minmax(0, 1fr); gap: 36px; }
+  .youtube-brands { gap: 24px; }
+  .youtube-brands__label { width: 100%; }
+  .youtube-brands__logos { gap: 20px 28px; }
+  .youtube-brands__logos img { width: 120px; height: 40px; }
+  .youtube-brands__cta { margin-left: 0; }
+  .youtube-featured__caption { display: none; }
 }
 
-.video-card {
-  transition: transform 0.3s ease, box-shadow 0.3s ease, opacity 0.5s ease;
-}
-
-.video-card:hover {
-  transform: scale(1.05) rotate(3deg);
-  opacity: 0.9;
-}
-
-/* Additional Framer Motion Enhancements */
-.youtube-container {
-  opacity: 1;
-  transition: opacity 0.8s ease-in-out;
-}
-
-.video-list {
-  opacity: 1;
-  transition: opacity 0.8s ease-in-out;
-}
-
-/* Pricing Boxes - smooth hover */
-.pricing-box {
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.pricing-box:hover {
-  transform: scale(1.05);
+@media (prefers-reduced-motion: reduce) {
+  .youtube-skeleton { animation: none; }
 }

@@ -1,178 +1,45 @@
-/* Base link styling */
-.link-content a {
-  color: #ffffff;
-  font-size: 1.1em;  /* Slightly smaller font size */
-  text-decoration: none;
-}
-
-/* Main container */
-.links-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 100vh;
-  background: linear-gradient(135deg, rgb(18, 18, 18) 0%, rgb(25, 25, 25) 100%);
-  color: #ffffff;
-  padding: 40px 20px;
-  animation: fadeIn 0.8s ease-out;
-  perspective: 1000px; /* Add perspective for 3D effects */
-}
-
-/* Smooth page fade in */
-@keyframes fadeIn {
-  from { opacity: 0; }
-  to { opacity: 1; }
-}
-
-/* Page title */
-.links-title {
-  font-size: 2.5em;
-  margin-bottom: 30px;
-  text-align: center;
-  font-weight: 600;
-  background: linear-gradient(45deg, #ffffff, #e0e0e0);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  opacity: 0;
-  animation: fadeInTitle 1s ease-out 0.3s forwards;
-  transform-style: preserve-3d;
-  text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
-}
-
-@keyframes fadeInTitle {
-  from { opacity: 0; transform: translateY(-20px) translateZ(-50px); }
-  to { opacity: 1; transform: translateY(0) translateZ(0); }
-}
-
-/* Links wrapper */
-.links-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  max-width: 550px;  /* Slightly smaller max-width */
-  display: flex;
-  flex-direction: column;
-  gap: 25px;  /* Increased gap between links */
-  transform-style: preserve-3d;
-}
-
-.links-list a {
-  text-decoration: none;
-  width: 100%;
-  color: #ffffff;
-}
-
-/* Individual link items */
-.link-item {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 12px;
-  padding: 12px 20px;  /* Slightly smaller padding */
-  width: 90%;  /* Slightly smaller width */
-  margin: 0 auto;  /* Center the links */
-  opacity: 0;
-  transform: translateY(20px) translateZ(0);
-  animation: slideIn 0.5s ease-out forwards;
-  animation-delay: calc(var(--link-index) * 0.1s);
-  transition: all 0.3s ease;
-  transform-style: preserve-3d;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);  /* Lighter default shadow */
-}
-
-.link-item:hover {
-  background: rgba(255, 255, 255, 0.08);
-  transform: translateY(-2px) translateZ(30px) rotateX(5deg);
-  box-shadow: 
-    0 15px 35px rgba(0, 0, 0, 0.2),
-    0 5px 15px rgba(0, 0, 0, 0.1),
-    0 8px 10px -5px rgba(0, 0, 0, 0.4);  /* Added undershadow on hover */
-}
-
-@keyframes slideIn {
-  from { 
-    opacity: 0;
-    transform: translateY(20px) translateZ(-50px) rotateX(-10deg);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0) translateZ(0) rotateX(0);
-  }
-}
-
-/* Link content layout */
-.link-content {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 15px;
-  transition: transform 0.2s ease;
-  transform-style: preserve-3d;
-}
-
-.link-item:hover .link-content {
-  transform: scale(1.01) translateZ(20px);
-}
-
-/* Link text elements */
-.link-name {
-  font-size: 1em;  /* Smaller font size */
-  font-weight: 500;
-  color: #ffffff;
+.links {
   flex: 1;
-  text-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  width: 100%;
+  max-width: calc(440px + 2 * 20px);
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 72px) 20px 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
 }
 
-.link-description {
-  font-size: 0.9em;  /* Smaller font size */
-  color: rgba(255, 255, 255, 0.7);
-  text-align: center;
-  flex: 2;
-  transform: translateZ(10px);
+.links-header { display: flex; flex-direction: column; align-items: center; gap: 8px; text-align: center; }
+.links-portrait { width: 140px; height: 180px; border-radius: 70px 70px 16px 16px; margin-bottom: 20px; }
+.links-name { font-size: 40px; line-height: 1; }
+.links-eyebrow { font-size: 11px; }
+
+.links-list { list-style: none; margin: 0; padding: 0; width: 100%; display: flex; flex-direction: column; gap: 12px; }
+
+.links-card {
+  display: flex; align-items: center; gap: 16px;
+  min-height: 76px; padding: 12px 20px;
+  border-radius: 20px; border: 1px solid var(--rule);
+  text-decoration: none; color: var(--ink);
+  transition: transform 0.2s var(--ease), border-color 0.2s, background-color 0.2s;
 }
+.links-card:hover { transform: translateY(-2px); color: var(--ink); border-color: var(--ink); }
+.links-card-text { flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px; }
+.links-card-title { font-family: var(--font-display); font-size: 22px; line-height: 1.15; }
+.links-card-note { font-size: 13px; color: var(--stone); }
 
-/* Icons */
-.link-icon-nav,
-.links-link-icon {
-  font-size: 1.2em;  /* Slightly smaller icons */
-  color: rgba(255, 255, 255, 0.9);
-  transition: all 0.3s ease;
-  transform: translateZ(15px);
-}
+.links-card--outline { border-color: var(--ink); }
 
-.link-item:hover .link-icon-nav,
-.link-item:hover .links-link-icon {
-  color: #ffffff;
-  transform: translateZ(25px) scale(1.1);
-}
+.links-card--blush { background: var(--blush); border-color: var(--blush); }
+.links-card--blush .links-card-note { color: var(--graphite); }
+.links-card--blush:hover { border-color: var(--ink); }
 
-/* Mobile responsiveness */
-@media (max-width: 800px) {
-  .links-container {
-    padding: 30px 15px;
-  }
+.links-card--dark { background: var(--ink); border-color: var(--ink); color: var(--paper); }
+.links-card--dark .links-card-note { color: var(--on-ink-muted); }
+.links-card--dark:hover { color: var(--paper); background: #000; }
+.links-card--dark:focus-visible { outline-color: var(--tomato); }
 
-  .links-title {
-    font-size: 2em;
-    margin-bottom: 25px;
-  }
-
-  .link-item {
-    padding: 10px 18px;  /* Even smaller padding on mobile */
-    width: 85%;  /* Slightly smaller width on mobile */
-  }
-
-  .link-name {
-    font-size: 0.95em;
-  }
-
-  .link-description {
-    font-size: 0.85em;
-  }
-
-  .link-icon-nav,
-  .links-link-icon {
-    font-size: 1.1em;
-  }
-}
+.links-home { margin-top: auto; padding-top: 16px; min-height: 44px; display: inline-flex; align-items: center; }
+.links-home:hover { color: var(--ink); }
+.links-card .arrow { width: 18px; height: 18px; }

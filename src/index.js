@@ -1,7 +1,8 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client'; // Import the new 'createRoot' from react-dom/client
 import { HashRouter } from 'react-router-dom';
-import App from './App';  // Import your main App component
+import './index.css';
+import App from './App';
 
 // Get the root element where you want to render the app
 const rootElement = document.getElementById('root');

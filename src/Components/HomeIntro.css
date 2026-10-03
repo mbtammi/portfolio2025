@@ -5,44 +5,38 @@
   pointer-events: none;
 }
 
-.home-intro-panel {
+.home-intro__panel {
   position: absolute;
   left: 0;
   right: 0;
-  height: 50%;
-  z-index: 1;
-  background: #0b0b0b;
-  pointer-events: none;
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.04);
+  height: 50.5%;
+  background: var(--ink);
 }
+.home-intro__panel--top { top: 0; }
+.home-intro__panel--bottom { bottom: 0; }
 
-.home-intro-panel--top {
-  top: 0;
-  transform-origin: 50% 0%;
-}
-
-.home-intro-panel--bottom {
-  bottom: 0;
-  transform-origin: 50% 100%;
-}
-
-.home-intro-lottie-wrap {
+.home-intro__stage {
   position: absolute;
   inset: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  z-index: 2;
-  pointer-events: none;
 }
 
-.home-intro-lottie {
-  width: min(360px, 72vw);
-  max-height: 45vh;
+/* The cat is near-black, so it sits on a blush disc to read against the ink panels. */
+.home-intro__disc {
+  width: min(280px, 62vw);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: var(--blush);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
 }
+.home-intro__lottie { width: 92%; }
 
 @media (prefers-reduced-motion: reduce) {
-  .home-intro {
-    display: none;
-  }
+  .home-intro { display: none; }
 }

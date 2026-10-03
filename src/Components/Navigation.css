@@ -1,102 +1,70 @@
-.navigation {
+.nav {
   position: sticky;
   top: 0;
   z-index: 100;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.85rem clamp(16px, 4vw, 32px);
-  background: rgba(11, 11, 11, 0.72);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
-  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.35);
+  border-bottom: 1px solid var(--rule);
 }
-
-.nav-links {
-  list-style: none;
-  display: flex;
-  gap: 2em;
-  font-size: larger;
-  flex: 1;
-  justify-content: center; /* Center the navigation items */
-  position: relative; /* Required for positioning the underline */
-}
-
-.nav-item {
-  text-decoration: none;
-  color: rgb(150, 150, 150);
-  font-size: 0.9em;
-  position: relative; /* Required for the underline */
-  transition: color 0.3s ease; /* Smooth transition for text color */
-}
-
-.nav-item:hover {
-  color: #FFD60A; /* Spotify green for a modern touch */
-}
-
-/* Add active underline animation */
-.nav-item::after {
+/* The blur lives on a pseudo-element: a filter on .nav itself would make it the
+   containing block for the fixed mobile menu and collapse the menu to 0px. */
+.nav::before {
   content: '';
   position: absolute;
-  bottom: -5px;
-  left: 0;
-  width: 0;
-  height: 2px;
-  background-color: #FFD60A; /* Yellow underline */
-  transition: width 0.3s ease; /* Smooth transition for width */
+  inset: 0;
+  z-index: -1;
+  background: rgba(242, 237, 227, 0.88);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
 }
 
-.nav-item.active::after {
-  width: 100%; /* Full width for active link */
+.nav--open { color: var(--paper); border-bottom-color: var(--ink-rule); }
+.nav--open::before { background: var(--ink); }
+.nav--open .nav__brand, .nav--open .nav__brand:hover { color: var(--paper); }
+.nav--open .nav__toggle { border-color: var(--paper); color: var(--paper); }
+
+.nav__bar { height: 96px; display: flex; align-items: center; justify-content: space-between; }
+
+.nav__brand { font-family: var(--font-display); font-style: italic; font-size: 26px; text-decoration: none; }
+
+.nav__links { display: flex; align-items: center; gap: 36px; font-size: 15px; font-weight: 500; }
+.nav__link { text-decoration: none; }
+.nav__link.active {
+  text-decoration: underline;
+  text-decoration-color: var(--tomato);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 8px;
 }
 
-/* Style for social media links (Instagram, YouTube, LinkedIn) */
-.navigation-social-links {
-  display: flex;
-  gap: 15px; /* Spacing between icons */
+.nav__toggle {
+  display: none; width: 44px; height: 44px; border-radius: 999px; border: 1px solid var(--ink);
+  background: transparent; color: var(--ink); align-items: center; justify-content: center; cursor: pointer;
 }
 
-.navigation-social-links a {
-  color: white; /* Set the link color to white */
-  text-decoration: none; /* Remove underline */
+.menu {
+  position: fixed; inset: 72px 0 0; z-index: 99; background: var(--ink); color: var(--paper);
+  padding: 24px var(--gutter) 32px; display: flex; flex-direction: column; overflow-y: auto;
+}
+.menu[hidden] { display: none; }
+.menu a { color: var(--paper); }
+.menu a:hover { color: var(--blush); }
+.menu__links { display: flex; flex-direction: column; }
+.menu__link {
+  display: flex; justify-content: space-between; align-items: baseline; padding: 18px 0;
+  border-bottom: 1px solid var(--ink-rule); text-decoration: none;
+  font-family: var(--font-display); font-size: 44px; line-height: 1;
+}
+.menu__link.active { font-style: italic; color: var(--blush) !important; }
+.menu__num { font-family: var(--font-mono); font-size: 12px; color: var(--on-ink-muted); }
+.menu__foot { margin-top: auto; padding-top: 32px; display: flex; flex-direction: column; gap: 16px; }
+.menu__socials { display: flex; justify-content: space-between; font-size: 14px; }
+.menu__email { font-family: var(--font-mono); font-size: 13px; color: var(--on-ink-muted) !important; text-align: center; }
+
+@media (max-width: 860px) {
+  .nav__bar { height: 72px; }
+  .nav__brand { font-size: 22px; }
+  .nav__links { display: none; }
+  .nav__toggle { display: flex; }
 }
 
-.link-icon-nav {
-  color: white; /* Set the icon color to white */
-  font-size: 1.5em; /* Icon size */
-}
-
-.name {
-  color: white;
-}
-
-.nav-item.active {
-  color: #FFD60A; /* Change color of active link */
-}
-
-/* Mobile responsiveness: adjust layout for screens smaller than 800px */
-@media (max-width: 800px) {
-  .navigation {
-    padding: 1em; /* Adjust padding */
-  }
-
-  .nav-links {
-    font-size: 0.8em; /* Smaller font size for navigation items */
-    /* flex: 0; */
-    padding-left: 0;
-  }
-
-  /* Hide the 'MIRO' name and social links on smaller screens */
-  .name {
-    display: none;
-  }
-
-  .navigation-social-links {
-    display: none;
-  }
-
-  .brand-section p {
-    padding-inline: 5% !important;
-  }
+@media (min-width: 861px) {
+  .menu { display: none; }
 }

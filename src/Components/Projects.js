@@ -1,441 +1,121 @@
-import React, { useState, useMemo } from 'react';
-import { motion } from 'framer-motion';
+import React, { useMemo, useState } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, useReducedMotion } from 'framer-motion';
+import { PROJECTS, CATEGORIES } from '../data/site';
+import Arrow from './Arrow';
+import Footer from './Footer';
 import './Projects.css';
-import hyvy from '../Images/hyvy.png'
-import kaasalainen from '../Images/kaasalainen.png'
-import Once from '../Images/Once-2.png'
-import saa from '../Images/saa.png'
-import tinkerit from '../Images/tinkerit2.png'
-import niko from '../Images/niko.png'
-import kyssari from '../Images/kyssari.png'
-import movit from '../Images/movit.png'
-import autoRanked from '../Images/auto-ranked-real.png'
-import globe from '../Images/globe.png'
-import flexliving from '../Images/flexliving.png'
-import Modal from './Modal';
 
-const projects = [
-  {
-    name: 'Auto-Ranked',
-    description: 'YouTube Optimizer — titles, ideas, and workflow in one place',
-    weblink: 'https://auto-ranked.com',
-    codeLink: '',
-    longDescription:
-      'Auto-Ranked is a YouTube optimizer: plan content, sharpen titles, and move faster from idea to publish. Built as my latest product — live at https://auto-ranked.com',
-    image: autoRanked,
-    stack: ['React', 'Product', 'YouTube', 'AI'],
-  },
-    {
-    name: 'WorldOfTheMaps',
-    description: 'Wordle for Maps, a fun daily game (Private code)',
-    codeLink: '',
-    weblink: 'https://worldofthemaps.com',
-    longDescription: 'A game inspired by Wordle but for maps. The user has to guess the country based on the map shown. The user gets hints based on how close the guess is to the actual country. The game is built with React and uses a custom API to fetch the maps and country data. Check it our at https://worldofthemaps.com',
-    image: globe,
-    stack: ['Vite', 'React', 'JavaScript', 'Globe Gl'],
-  },
-  {
-    name: 'Flexliving',
-    description: 'Review apartments and Validate reviews!',
-    codeLink: 'https://github.com/mbtammi/flexliving',
-    longDescription: 'A web app that allows users to review apartments and validate the reviews of others. The app is built with Next.js and uses TailwindCSS for styling. It is deployed on Vercel.',
-    image: flexliving,
-    stack: ['Next.js', 'TailwindCSS', 'Vercel', 'NodeJS'],
-  },
-  {
-    name: 'Movit-Integration',
-    description: 'Integration between a website and Movit (Private code)',
-    codeLink: '',
-    longDescription: 'Building a complex integration between multiple taxi companies and a driving management system. Talking a lot with the Movit system admins to get everything working and guiding them on how to proceed in the future to ease the integration process in the future.',
-    image: movit,
-    stack: ['CSS', 'React', 'RestAPI'],
-  },
-  {
-    name: 'OnceADay',
-    description: 'A habit tracker for Android',
-    codeLink: '',
-    weblink: 'https://play.google.com/store/apps/details?id=com.mirotrying.mironappsimple',
-    longDescription: 'The simplest habit tracker since all the other ones are too complex. Wanted to see how you upload an app to the Play Store.',
-    image: Once,
-    stack: ['React Native', 'Expo GO'],
-  },
-  {
-    name: 'Tinkerit',
-    description: 'Developing a scalable website and a business (Private code)',
-    codeLink: '',
-    weblink: 'https://tinkerit.fi',
-    longDescription: 'My business co-founded with my university colleagues. I operate as a CEO on this business and handle day to day activities. I also participate in coding processes and guide the other Co-founders on business related topics.',
-    image: tinkerit,
-    stack: ['Javascript', 'EmailJS'],
-  },
-  {
-    name: 'HyvyApp',
-    description: 'An app to help students discover their educational paths',
-    codeLink: 'https://gitlab.jyu.fi/mbtammi/mteifv1',
-    image: hyvy,
-    longDescription: 'A project to help student decide their future based on user-provided daily statistics. Build admin user and authentication on this. Lack of time main reason for this project to never see the day light. ',
-    stack: ['Typescript', 'MongoDB', 'Firebase'],
-  },
-  {
-    name: 'Niko',
-    description: 'Scalable and mobile capable website for a sales practitioner (Private code)',
-    codeLink: '',
-    longDescription: 'I have built several websites according to customers request and being in touch with the customer on the whole process. Explaining the solutions to the customer and how they can benefit on those.',
-    image: niko,
-    stack: ['NodeJS', 'React'],
-  },
-  {
-    name: 'Eristyspalvelu Kaasalainen',
-    description: 'A local insulation service business (Private code)',
-    codeLink: '',
-    weblink: 'https://www.eristys.fi/',
-    longDescription: 'Building a custom portfolio website for a customer in need. They wanted to simplify the process and proceeded to connect with my company and we delivered quickly and developed a scalable and a reliable website.',
-    image: kaasalainen,
-    stack: ['RestAPI', 'HTML', 'React', 'CSS'],
-  },
-  {
-    name: 'Weather App',
-    description: 'Single-page app with a REST API to get weather info',
-    codeLink: 'https://github.com/mbtammi/fullstack/tree/master/osa2/maidentiedot',
-    longDescription: 'Building a weather app with the help of RestAPI to fetch the data from online based on location provided by the user. Great Full Stack experience gained.',
-    image: saa,
-    stack: ['CSS', 'React', 'RestAPI'],
-  },
-  {
-    name: 'Future?',
-    description: 'I will tell about possible future projects here',
-    codeLink: '',
-    longDescription: "What should one write here? Always learning new technologies and improving my abilities on the current ones.",
-    image: kyssari,
-    stack: [],
-  }
-];
+const pad = (n) => String(n).padStart(2, '0');
 
-const workExperience = [
-  {
-    company: 'Tietoevry Oy',
-    period: '2024/06 - 2025/04',
-    title: 'Mobile Developer',
-    description: 'Developing a custom mobile application for a large dairy company',
-    technologies: ['React Native', 'TypeScript', 'Azure', 'Git']
-  },
-  {
-    company: 'Tinkerit Oy',
-    period: '2023/07 - 2025/04',
-    title: 'Chief Executive Officer',
-    description: 'Building a company from the ground up with 3 other founders. Customer outreach. Integration development. Team managing',
-    technologies: ['Business Development', 'Team Management', 'Integration APIs', 'Project Management']
-  },
-  {
-    company: 'Woolman Oy',
-    period: '2023/05 - 2024/05',
-    title: 'Full-stack Developer',
-    description: 'Developing online-stores with Shopify for customers',
-    technologies: ['Shopify', 'Liquid', 'JavaScript', 'CSS', 'HTML']
-  },
-  {
-    company: 'Webso Oy',
-    period: '2023/01 - 2023/05',
-    title: 'Software Developer',
-    description: 'Developing it-products for customers. Working in an agile enviroment in a startup',
-    technologies: ['Agile', 'JavaScript', 'React', 'Node.js', 'Git']
-  },
-  {
-    company: 'Nordea',
-    period: '2022/05 - 2022/09',
-    title: 'IT-Developer',
-    description: 'Performance testing services. Implementing features on the mobile application',
-    technologies: ['Performance Testing', 'Mobile Development', 'Java', 'Android', 'Testing Frameworks']
-  },
-  {
-    company: 'Jyväskylä University',
-    period: '2022 - 2023',
-    title: 'Programming Course Advisor',
-    description: 'Helping students with course\'s weekly tasks. Creating and supervising the course exam',
-    technologies: ['Python', 'Java', 'Teaching', 'Mentoring', 'Algorithm Design']
-  }
-];
+const ProjectImage = ({ project, featured }) => {
+  const contain = project.imageFit === 'contain';
+  const wellClass = [
+    'projects-well',
+    featured && 'projects-well--featured',
+    contain && 'projects-well--contain',
+    project.dark && 'projects-well--dark',
+  ].filter(Boolean).join(' ');
+  return (
+    <div className={wellClass}>
+      <img src={project.image} alt="" loading="lazy" />
+    </div>
+  );
+};
 
 const Projects = () => {
-  const [selectedProject, setSelectedProject] = useState(null);
-  const [showProjects, setShowProjects] = useState(false);
-  const technologies = useMemo(
-    () => [
-      ...new Set([
-        ...projects.flatMap(project => project.stack),
-        ...workExperience.flatMap(work => work.technologies)
-      ])
-    ],
-    []
-  );
+  const [filter, setFilter] = useState('all');
+  const reduce = useReducedMotion();
 
-  const openModal = (project) => {
-    setSelectedProject(project);
-  };
+  const counts = useMemo(() => {
+    const c = {};
+    PROJECTS.forEach((p) => { c[p.category] = (c[p.category] || 0) + 1; });
+    return c;
+  }, []);
 
-  const closeModal = () => {
-    setSelectedProject(null);
-  };
+  const visible = PROJECTS
+    .map((p, i) => ({ ...p, number: pad(i + 1) }))
+    .filter((p) => filter === 'all' || p.category === filter);
+  const featured = visible.find((p) => p.featured);
+  const rest = visible.filter((p) => p !== featured);
 
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.1,
-        delayChildren: 0.2
-      }
-    }
-  };
+  const enter = (delay = 0) => (reduce ? {} : {
+    initial: { opacity: 0, y: 20 },
+    animate: { opacity: 1, y: 0 },
+    transition: { duration: 0.6, delay, ease: [0.22, 1, 0.36, 1] },
+  });
 
-  const cardVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 20
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.4
-      }
-    }
-  };
-
-  const techStackVariants = {
-    hidden: { 
-      opacity: 0,
-      y: 100
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: {
-        duration: 0.8,
-        ease: "easeOut"
-      }
-    }
-  };
-
-  const techItemVariants = {
-    hidden: { scale: 0.8, opacity: 0 },
-    visible: { 
-      scale: 1,
-      opacity: 1,
-      transition: {
-        type: "spring",
-        stiffness: 100
-      }
-    },
-    hover: {
-      scale: 1.1,
-      rotate: [0, -5, 5, 0],
-      transition: {
-        duration: 0.3
-      }
-    }
-  };
+  const chips = [{ id: 'all', label: 'All', count: PROJECTS.length }]
+    .concat(CATEGORIES.map((c) => ({ ...c, count: counts[c.id] || 0 })));
 
   return (
-    <motion.div 
-      className="projects-container"
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.1 }}
-    >
-      <div className="view-selector">
-        <motion.div 
-          className="toggle-buttons"
-          initial={{ y: -20, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.5 }}
-        >
-          <motion.button
-            className={`toggle-btn ${!showProjects ? 'active' : ''}`}
-            onClick={() => setShowProjects(false)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Work
-            {!showProjects && <motion.div className="active-indicator" layoutId="activeIndicator" />}
-          </motion.button>
-          <motion.button
-            className={`toggle-btn ${showProjects ? 'active' : ''}`}
-            onClick={() => setShowProjects(true)}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            Projects
-            {showProjects && <motion.div className="active-indicator" layoutId="activeIndicator" />}
-          </motion.button>
+    <div className="projects">
+      <header className="projects-header container">
+        <motion.div className="projects-header__title" {...enter()}>
+          <p className="eyebrow">{PROJECTS.length} projects · 2020 → now</p>
+          <h1 className="h1">Work<span className="accent italic">.</span></h1>
         </motion.div>
+        <motion.p className="lede projects-header__lede" {...enter(0.1)}>
+          Products I&apos;ve launched, sites I&apos;ve built for clients, and experiments that taught me something.
+        </motion.p>
+      </header>
+
+      <div className="container">
+        <div className="projects-filters" role="group" aria-label="Filter projects by category">
+          {chips.map((c) => (
+            <button
+              key={c.id}
+              type="button"
+              className="chip"
+              aria-pressed={filter === c.id}
+              onClick={() => setFilter(c.id)}
+            >
+              {c.label} · {c.count}
+            </button>
+          ))}
+        </div>
+        <p className="visually-hidden" aria-live="polite">
+          Showing {visible.length} {visible.length === 1 ? 'project' : 'projects'}
+        </p>
       </div>
 
-      {!showProjects && (
-        <>
-          <motion.h2 
-            className="projects-title"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            Work Experience
-          </motion.h2>
-          <motion.div 
-            className="experience-list"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            viewport={{ once: true }}
-          >
-            {workExperience.map((job, index) => (
-              <motion.div
-                className="experience-card"
-                key={index}
-                variants={cardVariants}
-              >
-                <div className="experience-header">
-                  <h3>{job.company}</h3>
-                  <span className="period">{job.period}</span>
-                </div>
-                <h4>{job.title}</h4>
-                <p>{job.description}</p>
-              </motion.div>
-            ))}
+      <section className="projects-list container" aria-label="Projects">
+        {featured && (
+          <motion.div key={`featured-${filter}`} {...enter(0.15)}>
+            <Link to={`/projects/${featured.slug}`} className="projects-featured">
+              <ProjectImage project={featured} featured />
+              <div className="projects-featured__body">
+                <p className="meta projects-num">{featured.number} — {featured.meta}</p>
+                <h2 className="projects-featured__name">{featured.name}</h2>
+                <p className="projects-featured__tagline">{featured.tagline}</p>
+                <ul className="projects-tags" aria-label="Stack">
+                  {featured.stack.map((s) => <li key={s} className="tag">{s}</li>)}
+                </ul>
+                <span className="projects-featured__cta">Read case study <Arrow /></span>
+              </div>
+            </Link>
           </motion.div>
-        </>
-      )}
+        )}
 
-      {showProjects && (
-        <>
-          <motion.h2 
-            className="projects-title"
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-          >
-            My Projects
-          </motion.h2>
-          <motion.p 
-            className='project-title-text'
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.3 }}
-          >
-            Click on the cards for more info.
-          </motion.p>
-          <motion.div 
-            className="projects-list"
-            variants={containerVariants}
-            initial="hidden"
-            animate="visible"
-            viewport={{ once: true }}
-          >
-            {projects.map((project, index) => (
-              <motion.div
-                className="project-card"
-                key={index}
-                variants={cardVariants}
-                whileHover="hover"
-                onClick={() => openModal(project)}
-              >
-                <div className="project-card-header">
-                  <motion.img 
-                    src={project.image} 
-                    alt={project.name} 
-                    className="project-image"
-                    whileHover={{ scale: 1.1, opacity: 0.75 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                  <div className="project-title">
-                    <h2>{project.name}</h2>
-                    <div className="project-links">
-                      {project.codeLink && (
-                        <motion.a 
-                          href={project.codeLink} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="project-link code-link"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          View Code
-                        </motion.a>
-                      )}
-                      <br></br>
-                      {project.weblink && (
-                        <motion.a 
-                          href={project.weblink} 
-                          target="_blank" 
-                          rel="noopener noreferrer" 
-                          className="project-link site-link"
-                          whileHover={{ scale: 1.1 }}
-                          whileTap={{ scale: 0.95 }}
-                        >
-                          Link to Site
-                        </motion.a>
-                      )}
-                    </div>
-                  </div>
-                </div>
-                <p className="project-description">{project.description}</p>
-              </motion.div>
+        {rest.length > 0 && (
+          <ul className="projects-grid">
+            {rest.map((p, i) => (
+              <motion.li key={`${filter}-${p.slug}`} {...enter(reduce ? 0 : 0.15 + Math.min(i, 5) * 0.05)}>
+                <Link to={`/projects/${p.slug}`} className="projects-card">
+                  <ProjectImage project={p} />
+                  <p className="meta projects-num">{p.number} — {p.meta}</p>
+                  <h2 className="h3 projects-card__name">{p.name}</h2>
+                  <p className="body">{p.tagline}</p>
+                  <p className="meta">{p.stack.join(' · ')}</p>
+                </Link>
+              </motion.li>
             ))}
-          </motion.div>
+          </ul>
+        )}
+      </section>
 
-          {selectedProject && <Modal project={selectedProject} closeModal={closeModal} />}
-        </>
-      )}
-
-      <motion.div
-        className="project-stack"
-        variants={techStackVariants}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.1 }}
-      >
-        <motion.h4
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-        >
-          What have I learned:
-        </motion.h4>
-        <motion.ul>
-          {technologies.map((tech, idx) => (
-            <motion.li 
-              key={tech}
-              className="tech-item"
-              variants={techItemVariants}
-              whileHover="hover"
-              custom={idx}
-              layout
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ 
-                opacity: 1, 
-                scale: 1,
-                transition: {
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 20,
-                  delay: idx * 0.25
-                }
-              }}
-              exit={{ opacity: 0, scale: 0.8 }}
-              transition={{
-                layout: {
-                  type: "spring",
-                  stiffness: 300,
-                  damping: 25
-                }
-              }}
-            >
-              {tech}
-            </motion.li>
-          ))}
-        </motion.ul>
-      </motion.div>
-    </motion.div>
+      <Footer title={<>Got a project <em className="footer__em">in mind?</em></>} />
+    </div>
   );
 };
 
