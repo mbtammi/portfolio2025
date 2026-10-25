@@ -13,7 +13,7 @@ import {
   portrait,
 } from '../data/site';
 
-const FOLLOWERS = '5K+';
+const FOLLOWERS = '7.5K+';
 const MONTHLY_VIEWS = '180K+';
 
 const CONTENT_TYPES = [
