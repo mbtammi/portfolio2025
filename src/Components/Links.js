@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import Arrow from './Arrow';
-import { portrait, SOCIALS, YOUTUBE_URL } from '../data/site';
+import { EMAIL, portrait, SOCIALS, YOUTUBE_URL } from '../data/site';
 import './Links.css';
 
 const social = (label) => SOCIALS.find((s) => s.label === label)?.href;
@@ -11,6 +11,7 @@ const LINKS = [
   { title: 'Auto-Ranked', note: 'My YouTube optimizer · new', href: 'https://auto-ranked.com/', variant: 'dark' },
   { title: 'mirotrying', note: 'Watch on YouTube', href: YOUTUBE_URL, variant: 'blush' },
   { title: 'UGC for brands', note: 'Rates, formats, booking', to: '/ugc', variant: 'outline' },
+  { title: 'Email me', note: EMAIL, href: `mailto:${EMAIL}`, variant: 'tomato' },
   { title: 'Tinkerit', note: 'My company website', href: 'https://www.tinkerit.fi/' },
   { title: 'LinkedIn', note: 'Professional network', href: social('LinkedIn') },
   { title: 'Instagram', note: '@mirotammi', href: social('Instagram') },
@@ -45,7 +46,7 @@ const Links = () => {
                 <span className="links-card-title">{l.title}</span>
                 <span className="links-card-note">{l.note}</span>
               </span>
-              <Arrow direction={l.to ? 'right' : 'out'} size={18} />
+              <Arrow direction={l.to || l.href.startsWith('mailto:') ? 'right' : 'out'} size={18} />
             </>
           );
           const cls = `links-card links-card--${l.variant || 'plain'}`;
@@ -53,6 +54,8 @@ const Links = () => {
             <motion.li key={l.title} {...item(i + 1)}>
               {l.to ? (
                 <Link to={l.to} className={cls}>{inner}</Link>
+              ) : l.href.startsWith('mailto:') ? (
+                <a href={l.href} className={cls}>{inner}</a>
               ) : (
                 <a href={l.href} className={cls} target="_blank" rel="noopener noreferrer">{inner}</a>
               )}

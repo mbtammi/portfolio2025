@@ -84,7 +84,7 @@
 .youtube-featured--empty:hover { color: var(--paper); }
 
 .youtube-featured__label,
-.youtube-featured__kicker { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
+.youtube-featured__kicker { font-family: var(--font-body); font-size: 13px; letter-spacing: 0.06em; text-transform: uppercase; }
 
 .youtube-featured__caption {
   position: absolute;
@@ -146,7 +146,7 @@
   position: absolute;
   right: 12px;
   bottom: 12px;
-  font-family: var(--font-mono);
+  font-family: var(--font-body);
   font-size: 12px;
   padding: 4px 8px;
   border-radius: 6px;

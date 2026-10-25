@@ -73,7 +73,7 @@
 .project-next:hover { color: #fff; background: var(--tomato-hover); }
 .project-next:focus-visible { outline-offset: 4px; }
 .project-next__text { display: flex; flex-direction: column; gap: 8px; min-width: 0; }
-.project-next__eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
+.project-next__eyebrow { font-family: var(--font-body); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; }
 .project-next__name { font-family: var(--font-display); font-size: clamp(36px, 5vw, 72px); line-height: 1; overflow-wrap: break-word; }
 .project-next .arrow { width: clamp(32px, 3.9vw, 56px); height: clamp(32px, 3.9vw, 56px); stroke-width: 1.5; transition: transform 0.2s var(--ease); }
 .project-next:hover .arrow { transform: translateX(6px); }

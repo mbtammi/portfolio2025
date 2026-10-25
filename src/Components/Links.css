@@ -35,6 +35,10 @@
 .links-card--blush .links-card-note { color: var(--graphite); }
 .links-card--blush:hover { border-color: var(--ink); }
 
+.links-card--tomato { background: var(--tomato); border-color: var(--tomato); color: #fff; }
+.links-card--tomato .links-card-note { color: #fff; overflow-wrap: anywhere; }
+.links-card--tomato:hover { color: #fff; background: #B23722; border-color: #B23722; }
+
 .links-card--dark { background: var(--ink); border-color: var(--ink); color: var(--paper); }
 .links-card--dark .links-card-note { color: var(--on-ink-muted); }
 .links-card--dark:hover { color: var(--paper); background: #000; }

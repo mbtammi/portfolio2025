@@ -17,7 +17,6 @@
 
   --font-display: 'Fraunces', Georgia, serif;
   --font-body: 'Instrument Sans', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
 
   --gutter: clamp(16px, 5.5vw, 80px);
   --content: 1280px;
@@ -56,10 +55,10 @@ em, .italic { font-style: italic; }
 .h1 { font-family: var(--font-display); font-size: clamp(64px, 9.2vw, 132px); line-height: 0.92; letter-spacing: -0.03em; }
 .h2 { font-family: var(--font-display); font-size: clamp(44px, 5vw, 72px); line-height: 1; letter-spacing: -0.02em; }
 .h3 { font-family: var(--font-display); font-size: clamp(24px, 2.1vw, 30px); line-height: 1.1; }
-.eyebrow { font-family: var(--font-mono); font-size: 13px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--stone); }
+.eyebrow { font-family: var(--font-body); font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: var(--stone); }
 .lede { font-size: clamp(17px, 1.35vw, 19px); line-height: 1.55; color: var(--graphite); }
 .body { font-size: 16px; line-height: 1.5; color: var(--graphite); }
-.meta { font-family: var(--font-mono); font-size: 12px; color: var(--stone); }
+.meta { font-family: var(--font-body); font-size: 13px; font-weight: 500; color: var(--stone); }
 
 /* Buttons */
 .btn {
@@ -84,9 +83,9 @@ em, .italic { font-style: italic; }
 .arrow { width: 16px; height: 16px; flex: none; }
 
 /* Tags & chips */
-.tag { font-family: var(--font-mono); font-size: 12px; padding: 6px 12px; border-radius: 999px; background: var(--oat); color: var(--ink); white-space: nowrap; }
+.tag { font-family: var(--font-body); font-size: 13px; font-weight: 500; padding: 6px 12px; border-radius: 999px; background: var(--oat); color: var(--ink); white-space: nowrap; }
 .chip {
-  font-family: var(--font-mono); font-size: 13px; min-height: 40px; padding: 0 16px;
+  font-family: var(--font-body); font-size: 14px; font-weight: 500; min-height: 40px; padding: 0 16px;
   border-radius: 999px; border: 1px solid var(--rule); background: transparent; color: var(--ink); cursor: pointer;
 }
 .chip[aria-pressed='true'] { background: var(--ink); border-color: var(--ink); color: var(--paper); }
