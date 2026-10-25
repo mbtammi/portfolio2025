@@ -7,14 +7,11 @@ import {
   BRANDS,
   CALENDLY_URL,
   EMAIL,
-  TIKTOK_URL,
   YOUTUBE_URL,
   SOCIALS,
   portrait,
 } from '../data/site';
 
-const FOLLOWERS = '7.5K+';
-const MONTHLY_VIEWS = '180K+';
 
 const CONTENT_TYPES = [
   {
@@ -35,10 +32,11 @@ const CONTENT_TYPES = [
   },
 ];
 
+// Per platform on purpose: brands book by platform. Totals live on the homepage.
 const STATS = [
-  { value: MONTHLY_VIEWS, label: 'monthly views across socials', accent: true },
-  { value: FOLLOWERS, label: 'total followers, and growing' },
-  { value: String(CONTENT_TYPES.length), label: 'content formats I deliver' },
+  { value: '200K+', label: 'monthly views across socials', accent: true },
+  { value: '2.9K', label: 'Instagram followers' },
+  { value: '3.6K', label: 'YouTube subscribers' },
 ];
 
 const NICHES = [
@@ -55,7 +53,6 @@ const INSTAGRAM_URL = SOCIALS.find((s) => s.label === 'Instagram')?.href;
 const FOOTER_SOCIALS = [
   { label: 'YouTube', href: YOUTUBE_URL },
   { label: 'Instagram', href: INSTAGRAM_URL },
-  { label: 'TikTok', href: TIKTOK_URL },
 ].filter((s) => s.href);
 
 const fadeUp = (reduceMotion, delay = 0) => ({

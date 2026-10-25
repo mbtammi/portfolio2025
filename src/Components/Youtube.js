@@ -3,11 +3,12 @@ import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'framer-motion';
 import Arrow from './Arrow';
 import Footer from './Footer';
-import { BRANDS, STATS, YOUTUBE_URL } from '../data/site';
+import { BRANDS, YOUTUBE_URL } from '../data/site';
 import { fetchYouTube, formatCount, formatDuration } from '../lib/youtube';
 import './Youtube.css';
 
-const FALLBACK_SUBSCRIBERS = STATS.find((s) => s.label === 'YouTube subscribers')?.value || '3.6k';
+// Shown until the API responds, or if it fails.
+const FALLBACK_SUBSCRIBERS = '3.6k';
 const GRID_COUNT = 6;
 
 const watchUrl = (id) => `https://www.youtube.com/watch?v=${id}`;

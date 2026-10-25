@@ -25,15 +25,14 @@ export const SOCIALS = [
   { label: 'Instagram', href: 'https://www.instagram.com/mirotammi/' },
 ];
 
-export const TIKTOK_URL = 'https://www.tiktok.com/@mirotrying';
 export const YOUTUBE_URL = 'https://www.youtube.com/@mirotrying';
 
 // Static fallbacks; the YouTube page shows live numbers when the API responds.
 export const STATS = [
   { value: '7', label: 'years coding' },
   { value: '10+', label: 'projects shipped' },
-  { value: '3.6k', label: 'YouTube subscribers' },
-  { value: '180K+', label: 'monthly views across socials', accent: true },
+  { value: '6K+', label: 'followers on YouTube & Instagram' },
+  { value: '200K+', label: 'monthly views across socials', accent: true },
 ];
 
 export const BRANDS = [

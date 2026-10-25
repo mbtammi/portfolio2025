@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { SOCIALS } from '../data/site';
+import { EMAIL, SOCIALS } from '../data/site';
 import './Footer.css';
 
 // Shared dark footer band. Pages pass their own headline and CTA when they need one.
@@ -21,8 +21,12 @@ const Footer = ({
         {socials.map((s) => (
           <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">{s.label}</a>
         ))}
+        <Link to="/links">Links</Link>
       </div>
-      <div>Finland → Netherlands</div>
+      <div className="footer__meta">
+        <a href={`mailto:${EMAIL}`}>{EMAIL}</a>
+        <span>Finland → Netherlands</span>
+      </div>
     </div>
   </footer>
 );
